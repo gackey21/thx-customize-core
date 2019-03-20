@@ -31,39 +31,38 @@ License: GPL2
 if ( ! class_exists( 'thx_Customize_Core' ) ) {
 	class thx_Customize_Core {
 		public function __construct() {
+
 			//管理画面の設定
 			add_action('admin_menu', 'thx_admin_menu');
+
 			//引用符の解除
 			if (get_option('thx_remove_texturize')) {
 				remove_filter("the_content", "wptexturize");
 				remove_filter("the_excerpt", "wptexturize");
 				remove_filter("the_title", "wptexturize");
 			}
+
 			//和欧間スペース
 			if (get_option('thx_wao_space')) {
-				// 和欧間スペース　フック
 				add_filter('the_content', 'wao_space', 21000);
-				//css読み込み
 				add_action('wp_enqueue_scripts', 'wao_space_css');
 			}
+
 			//行間の崩れないルビ
 			if (get_option('thx_ruby')) {
-				//css読み込み
 				add_action('wp_enqueue_scripts', 'ruby_css');
-				//js読み込み
 				add_action('wp_enqueue_scripts', 'ruby_js');
 			}
+
 			//見出しカウンター
 			if (get_option('thx_counted_heading')) {
-				//css読み込み
 				add_action('wp_enqueue_scripts', 'counted_heading_css');
 			}
-			// コンテンツ変更　フック
-			add_filter(
-				'the_content',
-				array( $this, 'content_replace' ),
-				20900
-			);
+
+			// コンテンツ変更
+			if (get_option('thx_content_replace')) {
+				add_filter('the_content', 'content_replace', 20900);
+			}
 		}//__construct()
 
 		//amp出力を行うurl
@@ -75,17 +74,6 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				global $wp_filesystem;
 				$wp_filesystem -> put_contents( $path, $str );
 			}
-		}
-		//コンテンツ変更
-		public function content_replace($the_content) {
-			$match = '{(<div class="shoplinkyahoo">.*?)(Yahooショッピング)(.*?</div>)}uis';
-			$replece = '$1Yahoo!$3';
-			$the_content = preg_replace(
-				$match,
-				$replece,
-				$the_content
-			);
-			return $the_content;
 		}
 
 		//cssファイルをキューイング
@@ -114,5 +102,6 @@ require_once('src/php/menu.php');
 require_once('src/php/wao.php');
 require_once('src/php/ruby.php');
 require_once('src/php/counted-heading.php');
+require_once('src/php/content_replace.php');
 
 new thx_Customize_Core;

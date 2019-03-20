@@ -82,6 +82,28 @@ function thx_settings_init() {
 				'thx_settings-group', // グループ名。settings_fieldsで設定
 				'thx_counted_heading' // オプション名
 		);
+		add_settings_field(
+				'thx_content_replace', // フィールド名
+				'コンテンツの置き換え（β版）', // タイトル
+				'thx_content_replace_callback', // コールバック関数。この関数の実行結果が出力される
+				'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
+				'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		);
+		register_setting(
+				'thx_settings-group', // グループ名。settings_fieldsで設定
+				'thx_content_replace' // オプション名
+		);
+		add_settings_field(
+				'thx_content_replace_array', // フィールド名
+				'', // タイトル
+				'thx_content_replace_array_callback', // コールバック関数。この関数の実行結果が出力される
+				'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
+				'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		);
+		register_setting(
+				'thx_settings-group', // グループ名。settings_fieldsで設定
+				'thx_content_replace_array' // オプション名
+		);
 }
 add_action('admin_init', 'thx_settings_init');
 
@@ -109,4 +131,19 @@ function thx_counted_heading_callback() {
 		echo '<p><input name="thx_counted_heading" id="thx_counted_heading" type="checkbox" value="1"';
 		checked( get_option( 'thx_counted_heading', 1 ), 1 );
 		echo ' />見出しにカウンターを付加する</p>';
+}
+function thx_content_replace_callback() {
+		echo '<p><input name="thx_content_replace" id="thx_content_replace" type="checkbox" value="1"';
+		checked( get_option( 'thx_content_replace', 1 ), 1 );
+		echo ' />出力されるHTMLを正規表現で置換する</p>';
+}
+function thx_content_replace_array_callback() {
+		echo '<textarea
+			id="thx_content_replace_array"
+			name="thx_content_replace_array"
+			cols="80"
+			rows="4"
+			placeholder="{&quot;正規表現&quot;:&quot;置換文字&quot;,･･･}">'
+			.get_option( 'thx_content_replace_array' ).
+			'</textarea>';
 }
