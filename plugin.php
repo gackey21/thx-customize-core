@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/ Customize Core
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核プラグイン
-Version: 0.0.1
+Version: 0.0.2
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -46,6 +46,13 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				//css読み込み
 				add_action('wp_enqueue_scripts', 'wao_space_css');
 			}
+			//行間の崩れないルビ
+			if (get_option('thx_ruby')) {
+				//css読み込み
+				add_action('wp_enqueue_scripts', 'ruby_css');
+				//js読み込み
+				add_action('wp_enqueue_scripts', 'ruby_js');
+			}
 			//見出しカウンター
 			if (get_option('thx_counted_heading')) {
 				//css読み込み
@@ -80,6 +87,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			);
 			return $the_content;
 		}
+
 		//cssファイルをキューイング
 		public function enqueue_file_style($css_url) {
 			// cssのurlからファイル名のみ取り出す
@@ -89,11 +97,22 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			//キュー
 			wp_enqueue_style( $css_name, $css_url );
 		}//enqueue_file_style()
+
+		//jsファイルをキューイング
+		public function enqueue_file_script($js_url) {
+			// jsのurlからファイル名のみ取り出す
+			$js_name = preg_replace('{.*\/}uis', '', $js_url);
+			// jsのファイル名から拡張子を除去
+			$js_name = preg_replace('{\..*}uis', '', $js_name);
+			//キュー
+			wp_enqueue_script( $js_name, $js_url, array( 'jquery' ) );
+		}//enqueue_file_script()
 	}//class
 }//! class_exists
 
 require_once('src/php/menu.php');
 require_once('src/php/wao.php');
+require_once('src/php/ruby.php');
 require_once('src/php/counted-heading.php');
 
 new thx_Customize_Core;

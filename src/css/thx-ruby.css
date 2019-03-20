@@ -1,0 +1,28 @@
+/* 行間の崩れないルビ */
+ruby {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+rt {
+	display: none;
+}
+.editor-rich-text rt {
+	display: block;
+}
+.thx_yomi {
+  font-size: 0.5em;
+  position: absolute;
+  display: inline-flex;
+  justify-content: space-between;
+  left: 0.5em;
+  right: 0.5em;
+  line-height: 1em;
+}
+.thx_yomi_long {
+  left: 0px;
+  right: 0px;
+}
+.thx_yomi_mono {
+  display: inline-block;
+}
