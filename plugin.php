@@ -45,6 +45,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			//和欧間スペース
 			if (get_option('thx_wao_space')) {
 				add_filter('the_content', 'wao_space', 21000);
+				add_filter('the_category_content', 'wao_space', 21000);
 				add_action('wp_enqueue_scripts', 'wao_space_css');
 			}
 
