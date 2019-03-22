@@ -60,13 +60,13 @@ function thx_settings_init() {
 	);
 	register_setting('thx_settings-group', 'thx_wao_space');
 
-	add_settings_field(
-		'thx_wao_space_js_php',
-		'',
-		'thx_wao_space_js_php_callback',
-		'thx_settings',
-		'thx_settings_section'
-	);
+	// add_settings_field(
+	// 	'thx_wao_space_js_php',
+	// 	'',
+	// 	'thx_wao_space_js_php_callback',
+	// 	'thx_settings',
+	// 	'thx_settings_section'
+	// );
 	register_setting('thx_settings-group', 'thx_wao_space_js_php');
 
 	//ルビ
@@ -123,6 +123,7 @@ function thx_wao_space_callback() {
 	echo '<p><input name="thx_wao_space" id="thx_wao_space" type="checkbox" value="1"';
 	checked( get_option( 'thx_wao_space' ), 1 );
 	echo ' />和文と欧文の間にアキを設ける</p>';
+	thx_wao_space_js_php_callback();
 }
 function thx_wao_space_js_php_callback() {
 	echo '<p>　<input name="thx_wao_space_js_php" id="thx_wao_space_js_php" type="radio" value="jQuery"';
