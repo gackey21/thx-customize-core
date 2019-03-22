@@ -7,6 +7,9 @@ ruby {
 rt {
 	display: none;
 }
+.amp rt {
+	display: block;
+}
 .editor-rich-text rt {
 	display: block;
 }
