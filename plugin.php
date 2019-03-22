@@ -34,6 +34,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 			//管理画面の設定
 			add_action('admin_menu', 'thx_admin_menu');
+			add_action('admin_init', 'thx_settings_init');
 
 			//引用符の解除
 			if (get_option('thx_remove_texturize')) {
