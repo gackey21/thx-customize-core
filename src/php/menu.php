@@ -61,6 +61,17 @@ function thx_settings_init() {
 				'thx_wao_space' // オプション名
 		);
 		add_settings_field(
+				'thx_wao_space_js_php', // フィールド名
+				'', // タイトル
+				'thx_wao_space_js_php_callback', // コールバック関数。この関数の実行結果が出力される
+				'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
+				'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		);
+		register_setting(
+				'thx_settings-group', // グループ名。settings_fieldsで設定
+				'thx_wao_space_js_php' // オプション名
+		);
+		add_settings_field(
 				'thx_ruby', // フィールド名
 				'行間の崩れないルビ', // タイトル
 				'thx_ruby_callback', // コールバック関数。この関数の実行結果が出力される
@@ -105,7 +116,6 @@ function thx_settings_init() {
 				'thx_content_replace_array' // オプション名
 		);
 }
-add_action('admin_init', 'thx_settings_init');
 
 function thx_settings_section_callback_function() {
 		echo '<p>各機能のON/OFFを切り替えます。</p>';
@@ -114,13 +124,21 @@ function thx_settings_section_callback_function() {
 // チェックボックスを表示
 function thx_remove_texturize_callback() {
 		echo '<p><input name="thx_remove_texturize" id="thx_remove_texturize" type="checkbox" value="1"';
-		checked( get_option( 'thx_remove_texturize', 1 ), 1 );
+		checked( get_option( 'thx_remove_texturize', 1 ) );
 		echo ' />引用符などの自動変換機能を解除する</p>';
 }
 function thx_wao_space_callback() {
 		echo '<p><input name="thx_wao_space" id="thx_wao_space" type="checkbox" value="1"';
-		checked( get_option( 'thx_wao_space', 1 ), 1 );
+		checked( get_option( 'thx_wao_space' ), 1 );
 		echo ' />和文と欧文の間にアキを設ける</p>';
+}
+function thx_wao_space_js_php_callback() {
+	echo '<p>　<input name="thx_wao_space_js_php" id="thx_wao_space_js_php" type="radio" value="jQuery"';
+	checked( get_option( 'thx_wao_space_js_php' ), 'jQuery' );
+	echo ' />jQuery</p>';
+	echo '<p>　<input name="thx_wao_space_js_php" id="thx_wao_space_js_php" type="radio" value="php"';
+	checked( get_option( 'thx_wao_space_js_php' ), 'php' );
+	echo ' />php</p>';
 }
 function thx_ruby_callback() {
 		echo '<p><input name="thx_ruby" id="thx_ruby" type="checkbox" value="1"';
