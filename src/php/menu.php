@@ -32,96 +32,88 @@ function thx_settings_plugin_options() {
 }
 // 管理画面の作成
 function thx_settings_init() {
+
+	//セクション設定
 	add_settings_section(
 		'thx_settings_section', // セクション名
 		'プラグインの設定', // タイトル
 		'thx_settings_section_callback_function', // echo '<p>プラグインのON/OFFを切り替えます。</p>';
 		'thx_settings' // このセクションを表示するページ名。do_settings_sectionsで設定
 	);
+
+	//引用符の解除
 	add_settings_field(
-		'thx_remove_texturize', // フィールド名
-		'引用符の解除', // タイトル
-		'thx_remove_texturize_callback', // コールバック関数。この関数の実行結果が出力される
-		'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
-		'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		'thx_remove_texturize',
+		'引用符の解除',
+		'thx_remove_texturize_callback',
+		'thx_settings','thx_settings_section'
 	);
-	register_setting(
-		'thx_settings-group', // グループ名。settings_fieldsで設定
-		'thx_remove_texturize' // オプション名
-	);
+	register_setting('thx_settings-group', 'thx_remove_texturize');
+
+	//和欧間スペース
 	add_settings_field(
-		'thx_wao_space', // フィールド名
-		'和欧間スペース', // タイトル
-		'thx_wao_space_callback', // コールバック関数。この関数の実行結果が出力される
-		'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
-		'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		'thx_wao_space',
+		'和欧間スペース',
+		'thx_wao_space_callback',
+		'thx_settings',
+		'thx_settings_section'
 	);
-	register_setting(
-		'thx_settings-group', // グループ名。settings_fieldsで設定
-		'thx_wao_space' // オプション名
-	);
+	register_setting('thx_settings-group', 'thx_wao_space');
+
 	add_settings_field(
-		'thx_wao_space_js_php', // フィールド名
-		'', // タイトル
-		'thx_wao_space_js_php_callback', // コールバック関数。この関数の実行結果が出力される
-		'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
-		'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		'thx_wao_space_js_php',
+		'',
+		'thx_wao_space_js_php_callback',
+		'thx_settings',
+		'thx_settings_section'
 	);
-	register_setting(
-		'thx_settings-group', // グループ名。settings_fieldsで設定
-		'thx_wao_space_js_php' // オプション名
-	);
+	register_setting('thx_settings-group', 'thx_wao_space_js_php');
+
+	//ルビ
 	add_settings_field(
-		'thx_ruby', // フィールド名
-		'行間の崩れないルビ', // タイトル
-		'thx_ruby_callback', // コールバック関数。この関数の実行結果が出力される
-		'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
-		'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		'thx_ruby',
+		'行間の崩れないルビ',
+		'thx_ruby_callback',
+		'thx_settings',
+		'thx_settings_section'
 	);
-	register_setting(
-		'thx_settings-group', // グループ名。settings_fieldsで設定
-		'thx_ruby' // オプション名
-	);
+	register_setting('thx_settings-group', 'thx_ruby');
+
+	//見出しのカウンター
 	add_settings_field(
-		'thx_counted_heading', // フィールド名
-		'見出しのカウンター', // タイトル
-		'thx_counted_heading_callback', // コールバック関数。この関数の実行結果が出力される
-		'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
-		'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		'thx_counted_heading',
+		'見出しのカウンター',
+		'thx_counted_heading_callback',
+		'thx_settings',
+		'thx_settings_section'
 	);
-	register_setting(
-		'thx_settings-group', // グループ名。settings_fieldsで設定
-		'thx_counted_heading' // オプション名
-	);
+	register_setting('thx_settings-group', 'thx_counted_heading');
+
+	//コンテンツの置き換え
 	add_settings_field(
-		'thx_content_replace', // フィールド名
-		'コンテンツの置き換え（β版）', // タイトル
-		'thx_content_replace_callback', // コールバック関数。この関数の実行結果が出力される
-		'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
-		'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		'thx_content_replace',
+		'コンテンツの置き換え（β版）',
+		'thx_content_replace_callback',
+		'thx_settings',
+		'thx_settings_section'
 	);
-	register_setting(
-		'thx_settings-group', // グループ名。settings_fieldsで設定
-		'thx_content_replace' // オプション名
-	);
+	register_setting('thx_settings-group', 'thx_content_replace');
+
 	add_settings_field(
-		'thx_content_replace_array', // フィールド名
-		'', // タイトル
-		'thx_content_replace_array_callback', // コールバック関数。この関数の実行結果が出力される
-		'thx_settings', // このフィールドを表示するページ名。do_settings_sectionsで設定
-		'thx_settings_section' // このフィールドを表示するセクション名。add_settings_sectionで設定
+		'thx_content_replace_array',
+		'',
+		'thx_content_replace_array_callback',
+		'thx_settings',
+		'thx_settings_section'
 	);
-	register_setting(
-		'thx_settings-group', // グループ名。settings_fieldsで設定
-		'thx_content_replace_array' // オプション名
-	);
+	register_setting('thx_settings-group', 'thx_content_replace_array');
 }
 
 function thx_settings_section_callback_function() {
 	echo '<p>各機能のON/OFFを切り替えます。</p>';
 }
 
-// チェックボックスを表示
+// コールバック
 function thx_remove_texturize_callback() {
 	echo '<p><input name="thx_remove_texturize" id="thx_remove_texturize" type="checkbox" value="1"';
 	checked( get_option( 'thx_remove_texturize', 1 ) );
