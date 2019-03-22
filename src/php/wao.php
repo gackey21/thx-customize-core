@@ -46,6 +46,13 @@ function wao_space($the_content) {
 	return $the_content;
 }//wao_space($the_content)
 
+//jsの出力
+function wao_space_js() {
+	$js_url = plugins_url( '../js/thx-wao-space.js', __FILE__ );
+	$tCC = new thx_Customize_Core();
+	$tCC -> enqueue_file_script($js_url);
+}
+
 //cssの出力
 function wao_space_css() {
 	$css_url = plugins_url( '../css/thx-wao-space.css', __FILE__ );
