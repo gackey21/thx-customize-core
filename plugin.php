@@ -110,5 +110,18 @@ require_once('src/php/wao.php');
 require_once('src/php/ruby.php');
 require_once('src/php/counted-heading.php');
 require_once('src/php/content_replace.php');
-
+if ( !(is_admin() ) ) {
+	function replace_scripttag ( $tag ) {
+		// var_dump($tag);
+		if ( !preg_match( '/\b(defer|async)\b/', $tag ) ) {
+			if ( !preg_match( '/highlight-js/', $tag ) ) {
+				if ( !preg_match( '/.carousel-content/', $tag ) ) {
+					return str_replace( "type='text/javascript'", 'async', $tag );
+				}
+			}
+		}
+		return $tag;
+	}
+	add_filter( 'script_loader_tag', 'replace_scripttag' );
+}
 new thx_Customize_Core;
