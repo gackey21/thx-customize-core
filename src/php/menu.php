@@ -166,8 +166,7 @@ function thx_content_replace_array_callback() {
 	cols="80"
 	rows="4"
 	placeholder="{&quot;正規表現&quot;:&quot;置換文字&quot;,･･･}">
-<?php echo $thx_cc_option['content_replace_array']; ?>
-	</textarea>
+<?php echo $thx_cc_option['content_replace_array']; ?></textarea>
 	<?php
 	// global $thx_cc_setting;
 	// var_dump($thx_cc_setting);
