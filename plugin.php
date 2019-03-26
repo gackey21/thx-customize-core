@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/ Customize Core
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核プラグイン
-Version: 0.0.2
+Version: 0.0.5
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -31,6 +31,7 @@ License: GPL2
 if ( ! class_exists( 'thx_Customize_Core' ) ) {
 	class thx_Customize_Core {
 		public function __construct() {
+			$thx_cc_option = get_option('thx_cc_option');
 
 			//管理画面の設定
 			add_action('admin_menu', 'thx_admin_menu');
@@ -42,15 +43,15 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			}
 
 			//引用符の解除
-			if (get_option('thx_remove_texturize')) {
+			if ($thx_cc_option['remove_texturize'] == 1) {
 				remove_filter("the_content", "wptexturize");
 				remove_filter("the_excerpt", "wptexturize");
 				remove_filter("the_title", "wptexturize");
 			}
 
 			//和欧間スペース
-			if (get_option('thx_wao_space')) {
-				if (get_option('thx_wao_space_js_php') == 'jQuery') {
+			if ($thx_cc_option['wao_space'] == 1) {
+				if ($thx_cc_option['wao_space_js_php'] == 'jQuery') {
 					add_action('wp_enqueue_scripts', 'wao_space_js');
 				} else {
 					add_filter('the_content', 'wao_space', 21000);
@@ -61,18 +62,18 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			}
 
 			//行間の崩れないルビ
-			if (get_option('thx_ruby')) {
+			if ($thx_cc_option['ruby'] == 1) {
 				add_action('wp_enqueue_scripts', 'ruby_css');
 				add_action('wp_enqueue_scripts', 'ruby_js');
 			}
 
 			//見出しカウンター
-			if (get_option('thx_counted_heading')) {
+			if ($thx_cc_option['counted_heading'] == 1) {
 				add_action('wp_enqueue_scripts', 'counted_heading_css');
 			}
 
 			// コンテンツ変更
-			if (get_option('thx_content_replace')) {
+			if ($thx_cc_option['content_replace'] == 1) {
 				add_filter('the_content', 'content_replace', 20900);
 			}
 		}//__construct()
