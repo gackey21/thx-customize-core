@@ -36,6 +36,11 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			add_action('admin_menu', 'thx_admin_menu');
 			add_action('admin_init', 'thx_settings_init');
 
+			//アンインストール
+			if(function_exists('register_uninstall_hook')) {
+				register_uninstall_hook (__FILE__, array($this, 'thx_cc_uninstall'));
+			}
+
 			//引用符の解除
 			if (get_option('thx_remove_texturize')) {
 				remove_filter("the_content", "wptexturize");
@@ -71,6 +76,10 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				add_filter('the_content', 'content_replace', 20900);
 			}
 		}//__construct()
+
+		function thx_cc_uninstall() {
+			delete_option('thx_cc_option');
+		}
 
 		//amp出力を行うurl
 		static $css_amp_url = array();
