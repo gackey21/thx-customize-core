@@ -38,7 +38,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 			//アンインストール
 			if(function_exists('register_uninstall_hook')) {
-				register_uninstall_hook (__FILE__, array($this, 'thx_cc_uninstall'));
+				register_uninstall_hook (__FILE__, 'thx_Customize_Core::thx_cc_uninstall');
 			}
 
 			//引用符の解除
@@ -77,7 +77,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			}
 		}//__construct()
 
-		function thx_cc_uninstall() {
+		static function thx_cc_uninstall() {
 			delete_option('thx_cc_option');
 		}
 
