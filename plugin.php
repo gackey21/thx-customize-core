@@ -74,6 +74,17 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 		//amp出力を行うurl
 		static $css_amp_url = array();
+
+		//ファイル読み込み
+		public function file_to_str($path) {
+			require_once( ABSPATH.'wp-admin/includes/file.php' );
+			if ( WP_Filesystem() ) {
+				global $wp_filesystem;
+				$str = $wp_filesystem->get_contents($path);
+				return $str;
+			}
+		}
+
 		//ファイル書き出し
 		public function str_to_file($path, $str) {
 			require_once( ABSPATH.'wp-admin/includes/file.php' );
