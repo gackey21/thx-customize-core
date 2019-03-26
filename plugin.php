@@ -100,7 +100,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			// jsのファイル名から拡張子を除去
 			$js_name = preg_replace('{\..*}uis', '', $js_name);
 			//キュー
-			wp_enqueue_script( $js_name, $js_url, array( 'jquery' ) );
+			wp_enqueue_script( $js_name, $js_url, array( 'jquery' ), false, true );
 		}//enqueue_file_script()
 	}//class
 }//! class_exists
