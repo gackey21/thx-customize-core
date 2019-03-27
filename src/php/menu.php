@@ -189,23 +189,6 @@ function thx_radio_callback($args) {
 		call_user_func($args['add'], $args['arg']);
 	}
 }
-function thx_wao_space_js_php_callback() {
-	$thx_cc_option = get_option('thx_cc_option');
-	?>
-	<p>
-		　<input type="radio" name="thx_cc_option[wao_space_js_php]" id="thx_wao_space_js_php" value="jQuery"
-		<?php checked( $thx_cc_option['wao_space_js_php'], 'jQuery' ); ?>
-		/>
-		jQuery
-	</p>
-	<p>
-		　<input type="radio" name="thx_cc_option[wao_space_js_php]" id="thx_wao_space_js_php" value="php"
-		<?php checked( $thx_cc_option['wao_space_js_php'], 'php' ); ?>
-		/>
-		php
-	</p>
-	<?php
-}
 function thx_content_replace_array_callback() {
 	$thx_cc_option = get_option('thx_cc_option');
 	?>
