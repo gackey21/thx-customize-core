@@ -12,6 +12,7 @@ if( !$thx_cc_option ) {
 		'content_replace' => 0,
 		'content_replace_array' => '',
 		'async_js' => 'off',
+		'async_js_array' => '',
 	);
 	update_option( 'thx_cc_option', $thx_cc_option );
 }
@@ -151,8 +152,13 @@ function thx_settings_init() {
 				'defer' => 'defer',
 				'off' => 'OFF',
 			),
-			'add' => '',
-			'arg' => '',
+			'add' => 'thx_textarea_callback',
+			'arg' => array(
+				'option_array_name' => 'async_js_array',
+				'comment' => '↓除外項目を改行区切りで入力',
+				'placeholder' => '',
+				'add' => '',
+			)
 		)
 	);
 }
