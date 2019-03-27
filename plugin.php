@@ -78,7 +78,11 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			}
 
 			// jQueryの非同期読み込み
-			if ($thx_cc_option['async_js'] != 'off') {
+			if (
+				($thx_cc_option['async_js'] != 'off')
+				&&
+				! is_admin()
+			) {
 				add_filter( 'script_loader_tag', 'replace_script_tag' );
 			}
 		}//__construct()

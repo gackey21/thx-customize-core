@@ -1,7 +1,5 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit;
 //jQueryの非同期読み込み
-if ( !(is_admin() ) ) {
-}
 function replace_script_tag ( $tag ) {
 	$thx_cc_option = get_option('thx_cc_option');
 	$exclusion = str_replace(
