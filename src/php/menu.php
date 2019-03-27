@@ -137,7 +137,26 @@ function thx_single_checkbox_callback($args) {
 	</p>
 	<?php
 	if ($args['add']) {
-		call_user_func($args['add']);
+		call_user_func($args['add'], $args['arg']);
+	}
+}
+function thx_radio_callback($args) {
+	$thx_cc_option = get_option('thx_cc_option');
+	$option_name = $args['option_array_name'];
+	$key_comment = $args['comment'];
+	$name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
+	?>
+	<?php foreach ($key_comment as $key => $comment): ?>
+	<p>
+		<input type="radio" <?=$name_id?> value=<?=$key?>
+		<?php checked( $thx_cc_option[$option_name], $key ); ?>
+		/>
+		<?=$comment?>
+	</p>
+	<?php endforeach; ?>
+	<?php
+	if ($args['add']) {
+		call_user_func($args['add'], $args['arg']);
 	}
 }
 function thx_wao_space_js_php_callback() {
