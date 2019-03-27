@@ -1,6 +1,6 @@
-/* .article内の<p>、<li>にある半角英数字記号文字(列)にspan */
+/* .entry-content内の<p>、<li>にある半角英数字記号文字(列)にspan */
 jQuery(function(){
-  jQuery('.article p,.article li[class != "blocks-gallery-item"]').each(function() {
+  jQuery('.entry-content p,.entry-content li[class != "blocks-gallery-item"]').each(function() {
 		jQuery(this).html(
 			jQuery(this).html().replace(
 				/(<\/?[^>]+>)|([\s!-;=-~]+)/g,
