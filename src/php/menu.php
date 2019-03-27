@@ -8,7 +8,7 @@ if( !$thx_cc_option ) {
 		'wao_space' => 1,
 		'wao_space_js_php' => 'jQuery',
 		'ruby' => 1,
-		'counted_heading' => 1,
+		// 'counted_heading' => 0,
 		'content_replace' => 0,
 		'content_replace_array' => '',
 		'async_js' => 'off',
@@ -101,19 +101,19 @@ function thx_settings_init() {
 		)
 	);
 
-	//見出しのカウンター
-	add_settings_field(
-		'thx_counted_heading',
-		'見出しのカウンター',
-		'thx_single_checkbox_callback',
-		'thx_settings',
-		'thx_settings_section',
-		array(
-			'option_array_name' => 'counted_heading',
-			'comment' => '見出しにカウンターを付加する',
-			'add' => ''
-		)
-	);
+	// //見出しのカウンター
+	// add_settings_field(
+	// 	'thx_counted_heading',
+	// 	'見出しのカウンター',
+	// 	'thx_single_checkbox_callback',
+	// 	'thx_settings',
+	// 	'thx_settings_section',
+	// 	array(
+	// 		'option_array_name' => 'counted_heading',
+	// 		'comment' => '見出しにカウンターを付加する',
+	// 		'add' => ''
+	// 	)
+	// );
 
 	//コンテンツの置き換え
 	add_settings_field(

@@ -67,10 +67,10 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				add_action('wp_enqueue_scripts', 'ruby_js');
 			}
 
-			//見出しカウンター
-			if ($thx_cc_option['counted_heading'] == 1) {
-				add_action('wp_enqueue_scripts', 'counted_heading_css');
-			}
+			// //見出しカウンター
+			// if ($thx_cc_option['counted_heading'] == 1) {
+			// 	add_action('wp_enqueue_scripts', 'counted_heading_css');
+			// }
 
 			// コンテンツ変更
 			if ($thx_cc_option['content_replace'] == 1) {
@@ -134,7 +134,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 require_once('src/php/menu.php');
 require_once('src/php/wao.php');
 require_once('src/php/ruby.php');
-require_once('src/php/counted-heading.php');
+// require_once('src/php/counted-heading.php');
 require_once('src/php/content_replace.php');
 require_once('src/php/replace_script_tag.php');
 new thx_Customize_Core;
