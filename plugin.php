@@ -76,6 +76,11 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			if ($thx_cc_option['content_replace'] == 1) {
 				add_filter('the_content', 'content_replace', 20900);
 			}
+
+			// jQueryの非同期読み込み
+			if ($thx_cc_option['async_js'] != 'off') {
+				add_filter( 'script_loader_tag', 'replace_script_tag' );
+			}
 		}//__construct()
 
 		static function thx_cc_uninstall() {
@@ -131,18 +136,5 @@ require_once('src/php/wao.php');
 require_once('src/php/ruby.php');
 require_once('src/php/counted-heading.php');
 require_once('src/php/content_replace.php');
-if ( !(is_admin() ) ) {
-	function replace_scripttag ( $tag ) {
-		// var_dump($tag);
-		if ( !preg_match( '/\b(defer|async)\b/', $tag ) ) {
-			if ( !preg_match( '/highlight-js/', $tag ) ) {
-				if ( !preg_match( '/.carousel-content/', $tag ) ) {
-					return str_replace( "type='text/javascript'", 'async', $tag );
-				}
-			}
-		}
-		return $tag;
-	}
-	add_filter( 'script_loader_tag', 'replace_scripttag' );
-}
+require_once('src/php/replace_script_tag.php');
 new thx_Customize_Core;

@@ -115,7 +115,27 @@ function thx_settings_init() {
 		array(
 			'option_array_name' => 'content_replace',
 			'comment' => '出力されるHTMLを正規表現で置換する',
-			'add' => 'thx_content_replace_array_callback'
+			'add' => 'thx_content_replace_array_callback',
+			'arg' => '',
+		)
+	);
+
+	//jQueryの非同期読み込み
+	add_settings_field(
+		'thx_async_js',
+		'jQueryの非同期読み込み（β版）',
+		'thx_radio_callback',
+		'thx_settings',
+		'thx_settings_section',
+		array(
+			'option_array_name' => 'async_js',
+			'comment' => array(
+				'async' => 'async',
+				'defer' => 'defer',
+				'off' => 'OFF',
+			),
+			'add' => '',
+			'arg' => '',
 		)
 	);
 }
