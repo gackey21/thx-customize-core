@@ -9,8 +9,9 @@ if( !$thx_cc_option ) {
 		'wao_space_js_php' => 'jQuery',
 		'ruby' => 1,
 		'counted_heading' => 1,
-		'content_replace' => 1,
+		'content_replace' => 0,
 		'content_replace_array' => '',
+		'async_js' => 'off',
 	);
 	update_option( 'thx_cc_option', $thx_cc_option );
 }
