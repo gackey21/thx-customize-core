@@ -125,8 +125,15 @@ function thx_settings_init() {
 		array(
 			'option_array_name' => 'content_replace',
 			'comment' => '出力されるHTMLを正規表現で置換する',
-			'add' => 'thx_content_replace_array_callback',
-			'arg' => '',
+			// 'add' => 'thx_content_replace_array_callback',
+			// 'arg' => '',
+			'add' => 'thx_textarea_callback',
+			'arg' => array(
+				'option_array_name' => 'content_replace_array',
+				'comment' => '↓json形式で入力',
+				'placeholder' => '{&quot;正規表現&quot;:&quot;置換文字&quot;,･･･}',
+				'add' => '',
+			)
 		)
 	);
 
@@ -189,17 +196,18 @@ function thx_radio_callback($args) {
 		call_user_func($args['add'], $args['arg']);
 	}
 }
-function thx_content_replace_array_callback() {
+function thx_textarea_callback($args) {
 	$thx_cc_option = get_option('thx_cc_option');
+	$option_name = $args['option_array_name'];
+	$comment = $args['comment'];
+	$placeholder = $args['placeholder'];
+	$name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
 	?>
-	<textarea
-	name="thx_cc_option[content_replace_array]"
-	id="thx_content_replace_array"
-	cols="80"
-	rows="4"
-	placeholder="{&quot;正規表現&quot;:&quot;置換文字&quot;,･･･}">
-<?php echo $thx_cc_option['content_replace_array']; ?></textarea>
+	<?php if ($comment): ?>
+		<p><?=$comment?></p>
+	<?php endif; ?>
+	<textarea <?=$name_id?> cols="80" rows="4" placeholder=<?=$placeholder?>>
+<?php echo $thx_cc_option[$option_name]; ?></textarea>
 	<?php
-	// global $thx_cc_setting;
-	// var_dump($thx_cc_setting);
+	// var_dump($thx_cc_option);
 }
