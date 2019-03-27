@@ -73,7 +73,16 @@ function thx_settings_init() {
 		array(
 			'option_array_name' => 'wao_space',
 			'comment' => '和文と欧文の間にアキを設ける',
-			'add' => 'thx_wao_space_js_php_callback'
+			// 'add' => 'thx_wao_space_js_php_callback'
+			'add' => 'thx_radio_callback',
+			'arg' => array(
+				'option_array_name' => 'wao_space_js_php',
+				'comment' => array(
+					'jQuery' => 'jQuery',
+					'php' => 'php',
+				),
+				'add' => '',
+			)
 		)
 	);
 
