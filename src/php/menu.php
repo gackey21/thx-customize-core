@@ -11,8 +11,9 @@ if( !$thx_cc_option ) {
 		// 'counted_heading' => 0,
 		'content_replace' => 0,
 		'content_replace_array' => '',
-		'async_js' => 'off',
-		'async_js_array' => '',
+		'js_tag' => 0,
+		'js_async_defer' => 'async',
+		'js_async_defer_array' => '',
 	);
 	update_option( 'thx_cc_option', $thx_cc_option );
 }
@@ -155,31 +156,32 @@ function thx_settings_init() {
 
 	//jQueryの非同期読み込み
 	add_settings_field(
-		'thx_async_js',
+		'thx_js_tag',
 		'jQueryの非同期読み込み（β版）',
-		'thx_radio_callback',
-		'thx_settings',
-		'thx_settings_section',
+		'thx_single_checkbox_callback',
+		'thx_expand_settings',
+		'thx_expand_settings_section',
 		array(
-			'option_array_name' => 'async_js',
-			'comment' => array(
-				'async' => 'async',
-				'defer' => 'defer',
-				'off' => 'OFF',
-			),
-			'add' => 'thx_textarea_callback',
+			'option_array_name' => 'js_tag',
+			'comment' => 'html内の&lt;script&gt;タグを非同期で読み込む',
+			'add' => 'thx_radio_callback',
 			'arg' => array(
-				'option_array_name' => 'async_js_array',
-				'comment' => '↓除外項目を改行区切りで入力',
-				'placeholder' => '',
-				'add' => '',
+				'option_array_name' => 'js_async_defer',
+				'comment' => array(
+					'async' => 'async',
+					'defer' => 'defer',
+				),
+				'add' => 'thx_textarea_callback',
+				'arg' => array(
+					'option_array_name' => 'js_async_defer_array',
+					'comment' => '↓除外項目を改行区切りで入力',
+					'placeholder' => '',
+					'add' => '',
+				)
 			)
 		)
 	);
-}
-function thx_settings_section_callback_function() {
-	echo '<p>各機能のON/OFFを切り替えます。</p>';
-}
+}//function thx_settings_init()
 
 // コールバック
 function thx_single_checkbox_callback($args) {

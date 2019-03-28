@@ -5,13 +5,13 @@ function replace_script_tag ( $tag ) {
 	$exclusion = str_replace(
 		array("\r\n", "\r", "\n"),
 		"\n",
-		$thx_cc_option['async_js_array']
+		$thx_cc_option['js_async_defer_array']
 	);
 	$exclusion = explode("\n", $exclusion);
 	if (!preg_match('/\b(defer|async)\b/', $tag)) {
 		$tag = str_replace(
 			"type='text/javascript'",
-			$thx_cc_option['async_js'],
+			$thx_cc_option['js_async_defer'],
 			$tag
 		);
 	}
@@ -19,7 +19,7 @@ function replace_script_tag ( $tag ) {
 		foreach ($exclusion as $value) {
 			if (strpos($tag,$value) !== false) {
 				$tag = str_replace(
-					$thx_cc_option['async_js'],
+					$thx_cc_option['js_async_defer'],
 					'',
 					$tag
 				);
