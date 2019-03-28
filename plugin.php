@@ -49,6 +49,12 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				remove_filter("the_title", "wptexturize");
 			}
 
+			//行間の崩れないルビ
+			if ($thx_cc_option['ruby'] == 1) {
+				add_action('wp_enqueue_scripts', 'ruby_css');
+				add_action('wp_enqueue_scripts', 'ruby_js');
+			}
+
 			//和欧間スペース
 			if ($thx_cc_option['wao_space'] == 1) {
 				if ($thx_cc_option['wao_space_js_php'] == 'jQuery') {
@@ -59,12 +65,6 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				}
 
 				add_action('wp_enqueue_scripts', 'wao_space_css');
-			}
-
-			//行間の崩れないルビ
-			if ($thx_cc_option['ruby'] == 1) {
-				add_action('wp_enqueue_scripts', 'ruby_css');
-				add_action('wp_enqueue_scripts', 'ruby_js');
 			}
 
 			// //見出しカウンター
