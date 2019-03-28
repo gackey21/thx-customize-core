@@ -158,10 +158,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 }//! class_exists
 
 require_once('src/php/menu.php');
-// require_once('src/php/antialiase.php');
-// require_once('src/php/text_size_adjust.php');
 require_once('src/php/wao.php');
-// require_once('src/php/ruby.php');
 require_once('src/php/content_replace.php');
 require_once('src/php/script_tag_replace.php');
 
