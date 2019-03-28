@@ -4,6 +4,8 @@ define('PLUG_IN_NAME', 'thx.jp/');
 $thx_cc_option = get_option('thx_cc_option');
 if( !$thx_cc_option ) {
 	$thx_cc_option = array(
+		'antialiase' => 1,
+		'text_size_adjust' => 1,
 		'remove_texturize' => 1,
 		'wao_space' => 1,
 		'wao_space_js_php' => 'jQuery',
@@ -55,6 +57,34 @@ function thx_settings_init() {
 	function thx_settings_section_callback() {
 		echo '<p>各機能のON/OFFを切り替えます。</p>';
 	}
+
+	//アンチエイリアス
+	add_settings_field(
+		'thx_antialiase',
+		'アンチエイリアス処理',
+		'thx_single_checkbox_callback',
+		'thx_settings',
+		'thx_settings_section',
+		array(
+			'option_array_name' => 'antialiase',
+			'comment' => '表示される文字にアンチエイリアス処理を施す',
+			'add' => ''
+		)
+	);
+
+	//テキストの自動拡大
+	add_settings_field(
+		'thx_text_size_adjust',
+		'テキストの自動拡大',
+		'thx_single_checkbox_callback',
+		'thx_settings',
+		'thx_settings_section',
+		array(
+			'option_array_name' => 'text_size_adjust',
+			'comment' => 'テキストの自動拡大を無効化',
+			'add' => ''
+		)
+	);
 
 	//引用符の解除
 	add_settings_field(

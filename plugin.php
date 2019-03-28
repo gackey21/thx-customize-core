@@ -42,6 +42,16 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				register_uninstall_hook (__FILE__, 'thx_Customize_Core::thx_cc_uninstall');
 			}
 
+			//アンチエイリアス
+			if ($thx_cc_option['antialiase'] == 1) {
+				add_action('wp_enqueue_scripts', 'antialiase_css');
+			}
+
+			//テキストの自動拡大
+			if ($thx_cc_option['text_size_adjust'] == 1) {
+				add_action('wp_enqueue_scripts', 'text_size_adjust_css');
+			}
+
 			//引用符の解除
 			if ($thx_cc_option['remove_texturize'] == 1) {
 				remove_filter("the_content", "wptexturize");
@@ -132,6 +142,8 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 }//! class_exists
 
 require_once('src/php/menu.php');
+require_once('src/php/antialiase.php');
+require_once('src/php/text_size_adjust.php');
 require_once('src/php/wao.php');
 require_once('src/php/ruby.php');
 // require_once('src/php/counted-heading.php');
