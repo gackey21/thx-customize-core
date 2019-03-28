@@ -30,6 +30,10 @@ License: GPL2
 <?php
 if ( ! class_exists( 'thx_Customize_Core' ) ) {
 	class thx_Customize_Core {
+		//amp出力を行うurl
+		static $js_url = array();
+		static $css_url = array();
+		// static $css_amp_url = array();
 		public function __construct() {
 			$thx_cc_option = get_option('thx_cc_option');
 
@@ -44,12 +48,16 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 			//アンチエイリアス
 			if ($thx_cc_option['antialiase'] == 1) {
-				add_action('wp_enqueue_scripts', 'antialiase_css');
+				$this::$css_url[]
+					= plugins_url( 'src/css/thx-antialiase.css', __FILE__ );
+				// add_action('wp_enqueue_scripts', 'antialiase_css');
 			}
 
 			//テキストの自動拡大
 			if ($thx_cc_option['text_size_adjust'] == 1) {
-				add_action('wp_enqueue_scripts', 'text_size_adjust_css');
+				$this::$css_url[]
+					= plugins_url( 'src/css/thx-text-size-adjust.css', __FILE__ );
+				// add_action('wp_enqueue_scripts', 'text_size_adjust_css');
 			}
 
 			//引用符の解除
@@ -61,20 +69,28 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 			//行間の崩れないルビ
 			if ($thx_cc_option['ruby'] == 1) {
-				add_action('wp_enqueue_scripts', 'ruby_css');
-				add_action('wp_enqueue_scripts', 'ruby_js');
+				$this::$css_url[]
+					= plugins_url( 'src/css/thx-ruby.css', __FILE__ );
+				$this::$js_url[]
+					= plugins_url( 'src/js/thx-ruby.js', __FILE__ );
+				// add_action('wp_enqueue_scripts', 'ruby_css');
+				// add_action('wp_enqueue_scripts', 'ruby_js');
 			}
 
 			//和欧間スペース
 			if ($thx_cc_option['wao_space'] == 1) {
 				if ($thx_cc_option['wao_space_js_php'] == 'jQuery') {
-					add_action('wp_enqueue_scripts', 'wao_space_js');
+					$this::$js_url[]
+						= plugins_url( 'src/js/thx-wao-space.js', __FILE__ );
+					// add_action('wp_enqueue_scripts', 'wao_space_js');
 				} else {
 					add_filter('the_content', 'wao_space', 21000);
 					add_filter('the_category_content', 'wao_space', 21000);
 				}
 
-				add_action('wp_enqueue_scripts', 'wao_space_css');
+				$this::$css_url[]
+					= plugins_url( 'src/css/thx-wao-space.css', __FILE__ );
+				// add_action('wp_enqueue_scripts', 'wao_space_css');
 			}
 
 			// //見出しカウンター
@@ -91,14 +107,16 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			if ($thx_cc_option['js_tag'] && ! is_admin()) {
 				add_filter( 'script_loader_tag', 'replace_script_tag' );
 			}
+			// var_dump($this::$js_url);
+			// var_dump($this::$css_url);
+			// var_dump($this::$css_amp_url);
+			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
+			add_filter('amp_all_css', 'echo_amp_css');
 		}//__construct()
 
 		static function thx_cc_uninstall() {
 			delete_option('thx_cc_option');
 		}
-
-		//amp出力を行うurl
-		static $css_amp_url = array();
 
 		//ファイル読み込み
 		public function file_to_str($path) {
@@ -118,6 +136,17 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				$wp_filesystem -> put_contents( $path, $str );
 			}
 		}
+
+		//キューイング
+		public function enqueue_scripts() {
+			$tCC = new thx_Customize_Core();
+			foreach ($this::$css_url as $url) {
+				$tCC -> enqueue_file_style($url);
+			}
+			foreach ($this::$js_url as $url) {
+				$tCC -> enqueue_file_script($url);
+			}
+		}//enqueue_scripts()
 
 		//cssファイルをキューイング
 		public function enqueue_file_style($css_url) {
@@ -142,17 +171,24 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 }//! class_exists
 
 require_once('src/php/menu.php');
-require_once('src/php/antialiase.php');
-require_once('src/php/text_size_adjust.php');
+// require_once('src/php/antialiase.php');
+// require_once('src/php/text_size_adjust.php');
 require_once('src/php/wao.php');
-require_once('src/php/ruby.php');
+// require_once('src/php/ruby.php');
 // require_once('src/php/counted-heading.php');
 require_once('src/php/content_replace.php');
 require_once('src/php/replace_script_tag.php');
 
 function echo_amp_css($css) {//ampインライン出力用のcssファイルを選択
-	foreach (thx_Customize_Core::$css_amp_url as $css_url) {
-		$css .= css_url_to_css_minify_code($css_url);
+	// foreach (thx_Customize_Core::$css_amp_url as $css_url) {
+	// var_dump('aaaaaaaa');
+	// var_dump(thx_Customize_Core::$css_url);
+	foreach (thx_Customize_Core::$css_url as $url) {
+		var_dump($url);
+		var_dump(css_url_to_css_minify_code($url));
+		// var_dump($css_url);
+		// $css .= css_url_to_css_minify_code($css_url);
+		$css .= css_url_to_css_minify_code($url);
 	}
 	echo $css;
 }

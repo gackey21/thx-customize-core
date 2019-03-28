@@ -47,22 +47,24 @@ function wao_space($the_content) {
 }//wao_space($the_content)
 
 //jsの出力
-function wao_space_js() {
-	$js_url = plugins_url( '../js/thx-wao-space.js', __FILE__ );
-	$tCC = new thx_Customize_Core();
-	$tCC -> enqueue_file_script($js_url);
-}
+// function wao_space_js() {
+// 	$js_url = plugins_url( '../js/thx-wao-space.js', __FILE__ );
+// 	$tCC = new thx_Customize_Core();
+// 	$tCC -> enqueue_file_script($js_url);
+// }
 
 //cssの出力
-function wao_space_css() {
-	$css_url = plugins_url( '../css/thx-wao-space.css', __FILE__ );
-	$tCC = new thx_Customize_Core();
-	$tCC -> enqueue_file_style($css_url);
-}
+// function wao_space_css() {
+// 	$css_url = plugins_url( '../css/thx-wao-space.css', __FILE__ );
+// 	$tCC = new thx_Customize_Core();
+// 	thx_Customize_Core::$css_amp_url[] = plugins_url( '../css/thx-wao-space.css', __FILE__ );
+// 	$tCC -> enqueue_file_style($css_url);
+// 	// thx_Customize_Core::$css_amp_url[] = $css_url;
+// }
 
 //テーマがCocoonの場合はampに出力
-if (get_template() == 'cocoon-master') {
-	thx_Customize_Core::$css_amp_url[]
-		= plugins_url( '../css/thx-wao-space.css', __FILE__ );
-	add_filter('amp_all_css', 'echo_amp_css');
-}
+// if (get_template() == 'cocoon-master') {
+// 	// thx_Customize_Core::$css_amp_url[]
+// 	// 	= plugins_url( '../css/thx-wao-space.css', __FILE__ );
+// 	add_filter('amp_all_css', 'echo_amp_css');
+// }
