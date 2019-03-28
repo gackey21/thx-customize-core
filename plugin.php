@@ -149,4 +149,12 @@ require_once('src/php/ruby.php');
 // require_once('src/php/counted-heading.php');
 require_once('src/php/content_replace.php');
 require_once('src/php/replace_script_tag.php');
+
+function echo_amp_css($css) {//ampインライン出力用のcssファイルを選択
+	foreach (thx_Customize_Core::$css_amp_url as $css_url) {
+		$css .= css_url_to_css_minify_code($css_url);
+	}
+	echo $css;
+}
+
 new thx_Customize_Core;

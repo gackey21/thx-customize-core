@@ -66,13 +66,3 @@ if (get_template() == 'cocoon-master') {
 		= plugins_url( '../css/thx-wao-space.css', __FILE__ );
 	add_filter('amp_all_css', 'echo_amp_css');
 }
-
-function echo_amp_css($css) {//ampインライン出力用のcssファイルを選択
-	foreach (thx_Customize_Core::$css_amp_url as $css_url) {
-		var_dump($css_url);
-		$css .= css_url_to_css_minify_code($css_url);
-	}
-	// $css_url = plugins_url( '../css/thx-wao-space.css', __FILE__ );
-	// $css .= css_url_to_css_minify_code($css_url);
-	echo $css;
-}
