@@ -163,7 +163,7 @@ require_once('src/php/menu.php');
 require_once('src/php/wao.php');
 // require_once('src/php/ruby.php');
 require_once('src/php/content_replace.php');
-require_once('src/php/replace_script_tag.php');
+require_once('src/php/script_tag_replace.php');
 
 function echo_amp_css($css) {//ampインライン出力用のcssファイルを選択
 	foreach (thx_Customize_Core::$css_url as $url) {
