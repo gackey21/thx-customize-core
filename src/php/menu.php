@@ -34,6 +34,7 @@ function thx_settings_plugin_options() {
 		<form action="options.php" method="post">
 			<?php settings_fields('thx_settings-group'); // グループ名 ?>
 			<?php do_settings_sections('thx_settings'); // ページ名 ?>
+			<?php do_settings_sections('thx_expand_settings'); // ページ名 ?>
 			<?php submit_button(); ?>
 		</form>
 	</div>
@@ -46,10 +47,13 @@ function thx_settings_init() {
 	//セクション設定
 	add_settings_section(
 		'thx_settings_section', // セクション名
-		'プラグインの設定', // タイトル
-		'thx_settings_section_callback_function', // echo '<p>プラグインのON/OFFを切り替えます。</p>';
+		'基本機能の設定', // タイトル
+		'thx_settings_section_callback', // echo '<p>プラグインのON/OFFを切り替えます。</p>';
 		'thx_settings' // このセクションを表示するページ名。do_settings_sectionsで設定
 	);
+	function thx_settings_section_callback() {
+		echo '<p>各機能のON/OFFを切り替えます。</p>';
+	}
 
 	//引用符の解除
 	add_settings_field(
@@ -61,6 +65,20 @@ function thx_settings_init() {
 		array(
 			'option_array_name' => 'remove_texturize',
 			'comment' => '引用符などの自動変換機能を解除する',
+			'add' => ''
+		)
+	);
+
+	//ルビ
+	add_settings_field(
+		'thx_ruby',
+		'行間の崩れないルビ',
+		'thx_single_checkbox_callback',
+		'thx_settings',
+		'thx_settings_section',
+		array(
+			'option_array_name' => 'ruby',
+			'comment' => '行間の崩れないルビを使用する',
 			'add' => ''
 		)
 	);
@@ -88,20 +106,6 @@ function thx_settings_init() {
 		)
 	);
 
-	//ルビ
-	add_settings_field(
-		'thx_ruby',
-		'行間の崩れないルビ',
-		'thx_single_checkbox_callback',
-		'thx_settings',
-		'thx_settings_section',
-		array(
-			'option_array_name' => 'ruby',
-			'comment' => '行間の崩れないルビを使用する',
-			'add' => ''
-		)
-	);
-
 	// //見出しのカウンター
 	// add_settings_field(
 	// 	'thx_counted_heading',
@@ -116,13 +120,24 @@ function thx_settings_init() {
 	// 	)
 	// );
 
+	//拡張機能の設定
+	add_settings_section(
+		'thx_expand_settings_section', // セクション名
+		'拡張機能の設定', // タイトル
+		'thx_expand_settings_section_callback', // echo '<p>プラグインのON/OFFを切り替えます。</p>';
+		'thx_expand_settings' // このセクションを表示するページ名。do_settings_sectionsで設定
+	);
+	function thx_expand_settings_section_callback() {
+		echo '<p>検証中の機能です。</p>';
+	}
+
 	//コンテンツの置き換え
 	add_settings_field(
 		'thx_content_replace',
 		'コンテンツの置き換え（β版）',
 		'thx_single_checkbox_callback',
-		'thx_settings',
-		'thx_settings_section',
+		'thx_expand_settings',
+		'thx_expand_settings_section',
 		array(
 			'option_array_name' => 'content_replace',
 			'comment' => '出力されるHTMLを正規表現で置換する',
