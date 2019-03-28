@@ -98,7 +98,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			}
 
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
-			add_filter('amp_all_css', 'echo_amp_css');
+			// add_filter('amp_all_css', 'echo_amp_css');
 		}//__construct()
 
 		static function thx_cc_uninstall() {
@@ -162,13 +162,13 @@ require_once('src/php/wao.php');
 require_once('src/php/content_replace.php');
 require_once('src/php/script_tag_replace.php');
 
-function echo_amp_css($css) {//ampインライン出力用のcssファイルを選択
-	foreach (thx_Customize_Core::$css_url as $url) {
-		var_dump($url);
-		var_dump(css_url_to_css_minify_code($url));
-		$css .= css_url_to_css_minify_code($url);
-	}
-	echo $css;
-}
+// function echo_amp_css($css) {//ampインライン出力用のcssファイルを選択
+// 	foreach (thx_Customize_Core::$css_url as $url) {
+// 		var_dump($url);
+// 		var_dump(css_url_to_css_minify_code($url));
+// 		$css .= css_url_to_css_minify_code($url);
+// 	}
+// 	echo $css;
+// }
 
 new thx_Customize_Core;
