@@ -11,6 +11,8 @@ if( !$thx_cc_option ) {
 		'wao_space_js_php' => 'jQuery',
 		'ruby' => 1,
 		// 'counted_heading' => 0,
+		'hook_customize' => 0,
+		'hook_customize_array' => '',
 		'content_replace' => 0,
 		'content_replace_array' => '',
 		'js_tag' => 0,
@@ -162,6 +164,25 @@ function thx_settings_init() {
 		echo '<p>検証中の機能です。</p>';
 	}
 
+	//フックのカスタマイズ
+	// $hook_placeholder = "wp_register_script( 'typesquare_std', \"//webfonts.xserver.jp/js/xserver.js?\$query\", array( 'jquery' ), \$version, true );";
+	// $hook_placeholder = htmlspecialchars($hook_placeholder, ENT_QUOTES|ENT_HTML5);
+	// var_dump($hook_placeholder);
+	add_settings_field(
+		'thx_hook_customize',
+		'フックのカスタマイズ（β版）',
+		'thx_checkbox_callback',
+		'thx_expand_settings',
+		'thx_expand_settings_section',
+		array(
+			'option_array_name' => 'hook_customize',
+			'comment' => array(
+				'1' => '「TypeSquare Webfonts for エックスサーバー」をフッターで読み込む',
+			),
+			'add' => '',
+		)
+	);
+
 	//コンテンツの置き換え
 	add_settings_field(
 		'thx_content_replace',
@@ -211,6 +232,7 @@ function thx_settings_init() {
 			)
 		)
 	);
+
 }//function thx_settings_init()
 
 // コールバック
@@ -225,6 +247,26 @@ function thx_single_checkbox_callback($args) {
 		<?php checked( $thx_cc_option[$option_name], 1 ); ?>
 		/><?=$args['comment']?>
 	</p>
+	<?php
+	if ($args['add']) {
+		call_user_func($args['add'], $args['arg']);
+	}
+}
+function thx_checkbox_callback($args) {
+	$thx_cc_option = get_option('thx_cc_option');
+	$option_name = $args['option_array_name'];
+	$key_comment = $args['comment'];
+	$name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
+	?>
+	<input type="hidden" <?=$name_id?> value="0" />
+	<?php foreach ($key_comment as $key => $comment): ?>
+	<p>
+		<input type="checkbox" <?=$name_id?> value=<?=$key?>
+		<?php checked( $thx_cc_option[$option_name], $key ); ?>
+		/>
+		<?=$comment?>
+	</p>
+	<?php endforeach; ?>
 	<?php
 	if ($args['add']) {
 		call_user_func($args['add'], $args['arg']);

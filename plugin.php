@@ -87,6 +87,11 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 					= plugins_url( 'src/css/thx-wao-space.css', __FILE__ );
 			}
 
+			// フックのカスタマイズ
+			if ($thx_cc_option['hook_customize'] == 1) {
+				add_action('wp_enqueue_scripts', array($this, 'typesquare_std_into_footer'));
+			}
+
 			// コンテンツ変更
 			if ($thx_cc_option['content_replace'] == 1) {
 				add_filter('the_content', 'content_replace', 20900);
@@ -104,6 +109,19 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 		static function thx_cc_uninstall() {
 			delete_option('thx_cc_option');
 		}
+
+		//「TypeSquare Webfonts for エックスサーバー」をフッターで読み込む
+		public function typesquare_std_into_footer() {
+			wp_deregister_script( 'typesquare_std' );
+			// $this::$js_url[] = "//webfonts.xserver.jp/js/xserver.js";
+			wp_enqueue_script(
+				'typesquare_std',
+				"//webfonts.xserver.jp/js/xserver.js",
+				array( 'jquery' ),
+				false,
+				true
+			);
+		}//typesquare_std_into_footer()
 
 		//ファイル読み込み
 		public function file_to_str($path) {
