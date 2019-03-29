@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: thx.jp/ Customize Core
+Plugin Name: thx.jp/
 Plugin URI:
-Description: thx.jp/ カスタマイズの中核プラグイン
-Version: 0.0.5
+Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
+Version: 0.1.0
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -40,6 +40,12 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			//管理画面の設定
 			add_action('admin_menu', 'thx_admin_menu');
 			add_action('admin_init', 'thx_settings_init');
+
+			//プラグインメニューの設定
+			add_filter(
+				'plugin_action_links_' . plugin_basename( __FILE__ ),
+				array( $this, 'add_action_links' )
+			);
 
 			//アンインストール
 			if(function_exists('register_uninstall_hook')) {
@@ -108,6 +114,12 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 		static function thx_cc_uninstall() {
 			delete_option('thx_cc_option');
+		}
+
+		public function add_action_links ( $links ) {
+			$add_link = '<a href="options-general.php?page=thx-jp-customize-core">設定</a>';
+			array_unshift( $links, $add_link);
+			return $links;
 		}
 
 		//「TypeSquare Webfonts for エックスサーバー」をフッターで読み込む
