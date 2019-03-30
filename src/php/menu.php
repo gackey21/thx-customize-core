@@ -15,9 +15,9 @@ if( !$thx_cc_option ) {
 		'hook_customize_array' => '',
 		'content_replace' => 0,
 		'content_replace_array' => '',
-		'js_tag' => 0,
-		'js_async_defer' => 'async',
-		'js_async_defer_array' => '',
+		// 'js_tag' => 0,
+		// 'js_async_defer' => 'async',
+		// 'js_async_defer_array' => '',
 	);
 	update_option( 'thx_cc_option', $thx_cc_option );
 }
@@ -206,32 +206,32 @@ function thx_settings_init() {
 	);
 
 	//jQueryの非同期読み込み
-	add_settings_field(
-		'thx_js_tag',
-		'jQueryの非同期読み込み（β版）',
-		'thx_single_checkbox_callback',
-		'thx_expand_settings',
-		'thx_expand_settings_section',
-		array(
-			'option_array_name' => 'js_tag',
-			'comment' => 'html内の&lt;script&gt;タグを非同期で読み込む',
-			'add' => 'thx_radio_callback',
-			'arg' => array(
-				'option_array_name' => 'js_async_defer',
-				'comment' => array(
-					'async' => 'async',
-					'defer' => 'defer',
-				),
-				'add' => 'thx_textarea_callback',
-				'arg' => array(
-					'option_array_name' => 'js_async_defer_array',
-					'comment' => '↓除外項目を改行区切りで入力',
-					'placeholder' => '',
-					'add' => '',
-				)
-			)
-		)
-	);
+	// add_settings_field(
+	// 	'thx_js_tag',
+	// 	'jQueryの非同期読み込み（β版）',
+	// 	'thx_single_checkbox_callback',
+	// 	'thx_expand_settings',
+	// 	'thx_expand_settings_section',
+	// 	array(
+	// 		'option_array_name' => 'js_tag',
+	// 		'comment' => 'html内の&lt;script&gt;タグを非同期で読み込む',
+	// 		'add' => 'thx_radio_callback',
+	// 		'arg' => array(
+	// 			'option_array_name' => 'js_async_defer',
+	// 			'comment' => array(
+	// 				'async' => 'async',
+	// 				'defer' => 'defer',
+	// 			),
+	// 			'add' => 'thx_textarea_callback',
+	// 			'arg' => array(
+	// 				'option_array_name' => 'js_async_defer_array',
+	// 				'comment' => '↓除外項目を改行区切りで入力',
+	// 				'placeholder' => '',
+	// 				'add' => '',
+	// 			)
+	// 		)
+	// 	)
+	// );
 
 }//function thx_settings_init()
 

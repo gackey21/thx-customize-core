@@ -103,10 +103,10 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 				add_filter('the_content', 'content_replace', 20900);
 			}
 
-			// jQueryの非同期読み込み
-			if ($thx_cc_option['js_tag'] && ! is_admin()) {
-				add_filter( 'script_loader_tag', 'replace_script_tag' );
-			}
+			// // jQueryの非同期読み込み
+			// if ($thx_cc_option['js_tag'] && ! is_admin()) {
+			// 	add_filter( 'script_loader_tag', 'replace_script_tag' );
+			// }
 
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 			// add_filter('amp_all_css', 'echo_amp_css');
