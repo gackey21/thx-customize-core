@@ -51,7 +51,7 @@ function thx_settings_init() {
 	//セクション設定
 	add_settings_section(
 		'thx_settings_section', // セクション名
-		'基本機能の設定', // タイトル
+		'文字組に関する設定', // タイトル
 		'thx_settings_section_callback', // echo '<p>プラグインのON/OFFを切り替えます。</p>';
 		'thx_settings' // このセクションを表示するページ名。do_settings_sectionsで設定
 	);
