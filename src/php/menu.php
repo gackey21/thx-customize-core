@@ -10,7 +10,6 @@ if( !$thx_cc_option ) {
 		'wao_space' => 1,
 		'wao_space_js_php' => 'jQuery',
 		'ruby' => 1,
-		// 'counted_heading' => 0,
 		'hook_customize' => 0,
 		'hook_customize_array' => '',
 		'content_replace' => 0,
@@ -126,7 +125,6 @@ function thx_settings_init() {
 		array(
 			'option_array_name' => 'wao_space',
 			'comment' => '和文と欧文の間にアキを設ける',
-			// 'add' => 'thx_wao_space_js_php_callback'
 			'add' => 'thx_radio_callback',
 			'arg' => array(
 				'option_array_name' => 'wao_space_js_php',
@@ -138,20 +136,6 @@ function thx_settings_init() {
 			)
 		)
 	);
-
-	// //見出しのカウンター
-	// add_settings_field(
-	// 	'thx_counted_heading',
-	// 	'見出しのカウンター',
-	// 	'thx_single_checkbox_callback',
-	// 	'thx_settings',
-	// 	'thx_settings_section',
-	// 	array(
-	// 		'option_array_name' => 'counted_heading',
-	// 		'comment' => '見出しにカウンターを付加する',
-	// 		'add' => ''
-	// 	)
-	// );
 
 	//拡張機能の設定
 	add_settings_section(
@@ -165,9 +149,6 @@ function thx_settings_init() {
 	}
 
 	//フックのカスタマイズ
-	// $hook_placeholder = "wp_register_script( 'typesquare_std', \"//webfonts.xserver.jp/js/xserver.js?\$query\", array( 'jquery' ), \$version, true );";
-	// $hook_placeholder = htmlspecialchars($hook_placeholder, ENT_QUOTES|ENT_HTML5);
-	// var_dump($hook_placeholder);
 	add_settings_field(
 		'thx_hook_customize',
 		'フックのカスタマイズ（β版）',
