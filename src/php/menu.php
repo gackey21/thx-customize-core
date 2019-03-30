@@ -83,7 +83,7 @@ function thx_settings_init() {
 		'thx_settings_section',
 		array(
 			'option_array_name' => 'text_size_adjust',
-			'comment' => 'テキストの自動拡大を無効化',
+			'comment' => 'モバイル端末でのテキスト自動拡大を無効化',
 			'add' => ''
 		)
 	);
