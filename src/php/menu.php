@@ -10,8 +10,8 @@ if( !$thx_cc_option ) {
 		'wao_space' => 1,
 		'wao_space_js_php' => 'jQuery',
 		'ruby' => 1,
-		'hook_customize' => 0,
-		'hook_customize_array' => '',
+		// 'hook_customize' => 0,
+		// 'hook_customize_array' => '',
 		'content_replace' => 0,
 		'content_replace_array' => '',
 		// 'js_tag' => 0,
@@ -148,21 +148,21 @@ function thx_settings_init() {
 		echo '<p>検証中の機能です。</p>';
 	}
 
-	//フックのカスタマイズ
-	add_settings_field(
-		'thx_hook_customize',
-		'フックのカスタマイズ（β版）',
-		'thx_checkbox_callback',
-		'thx_expand_settings',
-		'thx_expand_settings_section',
-		array(
-			'option_array_name' => 'hook_customize',
-			'comment' => array(
-				'1' => '「TypeSquare Webfonts for エックスサーバー」をフッターで読み込む',
-			),
-			'add' => '',
-		)
-	);
+	// //フックのカスタマイズ
+	// add_settings_field(
+	// 	'thx_hook_customize',
+	// 	'フックのカスタマイズ（β版）',
+	// 	'thx_checkbox_callback',
+	// 	'thx_expand_settings',
+	// 	'thx_expand_settings_section',
+	// 	array(
+	// 		'option_array_name' => 'hook_customize',
+	// 		'comment' => array(
+	// 			'1' => '「TypeSquare Webfonts for エックスサーバー」をフッターで読み込む',
+	// 		),
+	// 		'add' => '',
+	// 	)
+	// );
 
 	//コンテンツの置き換え
 	add_settings_field(
