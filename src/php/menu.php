@@ -63,12 +63,16 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_antialiase',
 		'アンチエイリアス処理',
-		'thx_single_checkbox_callback',
+		'thx_checkbox_callback',
+		// 'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_array_name' => 'antialiase',
-			'comment' => '表示される文字にアンチエイリアス処理を施す',
+			'comment' => array(
+				'1' => '表示される文字にアンチエイリアス処理を施す',
+			),
+			// 'comment' => '表示される文字にアンチエイリアス処理を施す',
 			'add' => ''
 		)
 	);
@@ -77,12 +81,16 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_text_size_adjust',
 		'テキストの自動拡大',
-		'thx_single_checkbox_callback',
+		'thx_checkbox_callback',
+		// 'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_array_name' => 'text_size_adjust',
-			'comment' => 'モバイル端末でのテキスト自動拡大を無効化',
+			'comment' => array(
+				'1' => 'モバイル端末でのテキスト自動拡大を無効化',
+			),
+			// 'comment' => 'モバイル端末でのテキスト自動拡大を無効化',
 			'add' => ''
 		)
 	);
@@ -91,12 +99,16 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_remove_texturize',
 		'引用符の解除',
-		'thx_single_checkbox_callback',
+		'thx_checkbox_callback',
+		// 'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_array_name' => 'remove_texturize',
-			'comment' => '引用符などの自動変換機能を解除する',
+			'comment' => array(
+				'1' => '引用符などの自動変換機能を解除する',
+			),
+			// 'comment' => '引用符などの自動変換機能を解除する',
 			'add' => ''
 		)
 	);
@@ -105,12 +117,16 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_ruby',
 		'行間の崩れないルビ',
-		'thx_single_checkbox_callback',
+		'thx_checkbox_callback',
+		// 'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_array_name' => 'ruby',
-			'comment' => '行間の崩れないルビを使用する',
+			'comment' => array(
+				'1' => '行間の崩れないルビを使用する',
+			),
+			// 'comment' => '行間の崩れないルビを使用する',
 			'add' => ''
 		)
 	);
@@ -119,12 +135,16 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_wao_space',
 		'和欧間スペース',
-		'thx_single_checkbox_callback',
+		'thx_checkbox_callback',
+		// 'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_array_name' => 'wao_space',
-			'comment' => '和文と欧文の間にアキを設ける',
+			'comment' => array(
+				'1' => '和文と欧文の間にアキを設ける',
+			),
+			// 'comment' => '和文と欧文の間にアキを設ける',
 			'add' => 'thx_radio_callback',
 			'arg' => array(
 				'option_array_name' => 'wao_space_js_php',
