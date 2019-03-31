@@ -41,7 +41,15 @@ function thx_settings_plugin_options() {
 			<?php submit_button(); ?>
 		</form>
 	</div>
+	<?php if (isset($_GET['settings-updated'])): ?>
+		<?php if ($_GET['settings-updated']): ?>
+			<div class="updated notice is-dismissible">
+				<p><strong>設定を保存しました。</strong></p>
+			</div>
+		<?php endif; ?>
+	<?php endif;//isset ?>
 	<?php
+	// var_dump($thx_cc_option);
 }
 // 管理画面の作成
 function thx_settings_init() {
