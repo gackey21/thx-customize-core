@@ -33,6 +33,10 @@ function thx_admin_menu() {
 }
 // フォームの枠組を出力する
 function thx_settings_plugin_options() {
+	// ユーザーが必要な権限を持つか確認する必要がある
+	if (!current_user_can('manage_options'))  {
+		wp_die( __('このページにアクセスする管理者権限がありません。') );
+	}
 	?>
 	<div class="wrap">
 		<form action="options.php" method="post">
