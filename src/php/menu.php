@@ -214,16 +214,22 @@ function thx_single_checkbox_callback($args) {
 	}
 }
 function thx_checkbox_callback($args) {
-	$thx_cc_option = get_option('thx_cc_option');
-	$option_name = $args['option_array_name'];
+	if ($args['option_array_name']) {
+		$option_array_name = $args['option_array_name'];
+		$option_name = 'thx_cc_option['.$option_array_name.']';
+		$thx_option = get_option('thx_cc_option')[$option_array_name];
+	} else {
+		$option_name = $args['option_name'];
+		$thx_option = get_option($option_name);
+	}
 	$key_comment = $args['comment'];
-	$name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
+	$name_id = 'name="'.$option_name.'" id="'.$option_name.'"';
 	?>
 	<input type="hidden" <?=$name_id?> value="0" />
 	<?php foreach ($key_comment as $key => $comment): ?>
 	<p>
 		<input type="checkbox" <?=$name_id?> value=<?=$key?>
-		<?php checked( $thx_cc_option[$option_name], $key ); ?>
+		<?php checked( $thx_option, $key ); ?>
 		/>
 		<?=$comment?>
 	</p>
@@ -234,15 +240,21 @@ function thx_checkbox_callback($args) {
 	}
 }
 function thx_radio_callback($args) {
-	$thx_cc_option = get_option('thx_cc_option');
-	$option_name = $args['option_array_name'];
+	if ($args['option_array_name']) {
+		$option_array_name = $args['option_array_name'];
+		$option_name = 'thx_cc_option['.$option_array_name.']';
+		$thx_option = get_option('thx_cc_option')[$option_array_name];
+	} else {
+		$option_name = $args['option_name'];
+		$thx_option = get_option($option_name);
+	}
 	$key_comment = $args['comment'];
-	$name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
+	$name_id = 'name="'.$option_name.'" id="'.$option_name.'"';
 	?>
 	<?php foreach ($key_comment as $key => $comment): ?>
 	<p>
 		<input type="radio" <?=$name_id?> value=<?=$key?>
-		<?php checked( $thx_cc_option[$option_name], $key ); ?>
+		<?php checked( $thx_option, $key ); ?>
 		/>
 		<?=$comment?>
 	</p>
@@ -251,19 +263,31 @@ function thx_radio_callback($args) {
 	if ($args['add']) {
 		call_user_func($args['add'], $args['arg']);
 	}
+	// var_dump(get_option('thx_cc_option'));
+	// var_dump($thx_option);
 }
 function thx_textarea_callback($args) {
-	$thx_cc_option = get_option('thx_cc_option');
-	$option_name = $args['option_array_name'];
+	if ($args['option_array_name']) {
+		$option_array_name = $args['option_array_name'];
+		$option_name = 'thx_cc_option['.$option_array_name.']';
+		$thx_option = get_option('thx_cc_option')[$option_array_name];
+	} else {
+		$option_name = $args['option_name'];
+		$thx_option = get_option($option_name);
+	}
 	$comment = $args['comment'];
 	$placeholder = $args['placeholder'];
-	$name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
+	$name_id = 'name="'.$option_name.'" id="'.$option_name.'"';
+	// $thx_cc_option = get_option('thx_cc_option');
+	// $option_name = $args['option_array_name'];
+	// $comment = $args['comment'];
+	// $placeholder = $args['placeholder'];
+	// $name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
 	?>
 	<?php if ($comment): ?>
 		<p><?=$comment?></p>
 	<?php endif; ?>
-	<textarea <?=$name_id?> cols="80" rows="4" placeholder=<?=$placeholder?>>
-<?php echo $thx_cc_option[$option_name]; ?></textarea>
+	<textarea <?=$name_id?> cols="80" rows="4" placeholder=<?=$placeholder?>><?=$thx_option?></textarea>
 	<?php
-	// var_dump($thx_cc_option);
+	// var_dump($thx_option);
 }
