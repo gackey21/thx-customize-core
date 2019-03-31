@@ -38,7 +38,6 @@ function thx_settings_plugin_options() {
 		<form action="options.php" method="post">
 			<?php settings_fields('thx_settings-group'); // グループ名 ?>
 			<?php do_settings_sections('thx_settings'); // ページ名 ?>
-			<?php do_settings_sections('thx_expand_settings'); // ページ名 ?>
 			<?php submit_button(); ?>
 		</form>
 	</div>
@@ -156,17 +155,6 @@ function thx_settings_init() {
 			)
 		)
 	);
-
-	//拡張機能の設定
-	add_settings_section(
-		'thx_expand_settings_section', // セクション名
-		'拡張機能の設定', // タイトル
-		'thx_expand_settings_section_callback', // echo '<p>プラグインのON/OFFを切り替えます。</p>';
-		'thx_expand_settings' // このセクションを表示するページ名。do_settings_sectionsで設定
-	);
-	function thx_expand_settings_section_callback() {
-		echo '<p>検証中の機能です。</p>';
-	}
 
 	// //フックのカスタマイズ
 	// add_settings_field(
