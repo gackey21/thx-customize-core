@@ -162,7 +162,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 require_once('src/php/menu.php');
 require_once('src/php/wao.php');
-require_once('src/php/content_replace.php');
-require_once('src/php/script_tag_replace.php');
+// require_once('src/php/content_replace.php');
+// require_once('src/php/script_tag_replace.php');
 
 new thx_Customize_Core;
