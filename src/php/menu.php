@@ -23,13 +23,22 @@ if( !$thx_cc_option ) {
 
 function thx_admin_menu() {
 	//設定のサブメニューに追加する
-	add_options_page(
-		PLUG_IN_NAME,
+	add_menu_page(
+		PLUG_IN_NAME.' の設定',
 		PLUG_IN_NAME,
 		'manage_options',
 		'thx-jp-customize-core',
-		'thx_settings_plugin_options'
+		'thx_settings_plugin_options',
+		'dashicons-admin-plugins',
+		30
 	);
+	// add_options_page(
+	// 	PLUG_IN_NAME,
+	// 	PLUG_IN_NAME,
+	// 	'manage_options',
+	// 	'thx-jp-customize-core',
+	// 	'thx_settings_plugin_options'
+	// );
 }
 // フォームの枠組を出力する
 function thx_settings_plugin_options() {
