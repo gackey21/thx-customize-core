@@ -98,10 +98,10 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			// 	add_action('wp_enqueue_scripts', array($this, 'typesquare_std_into_footer'));
 			// }
 
-			// コンテンツ変更
-			if ($thx_cc_option['content_replace'] == 1) {
-				add_filter('the_content', 'content_replace', 20900);
-			}
+			// // コンテンツ変更
+			// if ($thx_cc_option['content_replace'] == 1) {
+			// 	add_filter('the_content', 'content_replace', 20900);
+			// }
 
 			// // jQueryの非同期読み込み
 			// if ($thx_cc_option['js_tag'] && ! is_admin()) {

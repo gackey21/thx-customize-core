@@ -12,8 +12,8 @@ if( !$thx_cc_option ) {
 		'ruby' => 1,
 		// 'hook_customize' => 0,
 		// 'hook_customize_array' => '',
-		'content_replace' => 0,
-		'content_replace_array' => '',
+		// 'content_replace' => 0,
+		// 'content_replace_array' => '',
 		// 'js_tag' => 0,
 		// 'js_async_defer' => 'async',
 		// 'js_async_defer_array' => '',
@@ -165,26 +165,6 @@ function thx_settings_init() {
 	// );
 
 	//コンテンツの置き換え
-	add_settings_field(
-		'thx_content_replace',
-		'コンテンツの置き換え（β版）',
-		'thx_single_checkbox_callback',
-		'thx_expand_settings',
-		'thx_expand_settings_section',
-		array(
-			'option_array_name' => 'content_replace',
-			'comment' => '出力されるHTMLを正規表現で置換する',
-			// 'add' => 'thx_content_replace_array_callback',
-			// 'arg' => '',
-			'add' => 'thx_textarea_callback',
-			'arg' => array(
-				'option_array_name' => 'content_replace_array',
-				'comment' => '↓json形式で入力',
-				'placeholder' => '{&quot;正規表現&quot;:&quot;置換文字&quot;,･･･}',
-				'add' => '',
-			)
-		)
-	);
 
 	//jQueryの非同期読み込み
 	// add_settings_field(
