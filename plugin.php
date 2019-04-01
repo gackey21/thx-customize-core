@@ -31,8 +31,8 @@ License: GPL2
 if ( ! class_exists( 'thx_Customize_Core' ) ) {
 	class thx_Customize_Core {
 		//読み込むurl
-		static $js_url = array();
-		static $css_url = array();
+		static $push_js_url = array();
+		static $push_css_url = array();
 
 		public function __construct() {
 			$thx_cc_option = get_option('thx_cc_option');
@@ -54,13 +54,13 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 			//アンチエイリアス
 			if ($thx_cc_option['antialiase'] == 1) {
-				$this::$css_url[]
+				$this::$push_css_url[]
 					= plugins_url( 'src/css/thx-antialiase.css', __FILE__ );
 			}
 
 			//テキストの自動拡大
 			if ($thx_cc_option['text_size_adjust'] == 1) {
-				$this::$css_url[]
+				$this::$push_css_url[]
 					= plugins_url( 'src/css/thx-text-size-adjust.css', __FILE__ );
 			}
 
@@ -73,23 +73,23 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 			//行間の崩れないルビ
 			if ($thx_cc_option['ruby'] == 1) {
-				$this::$css_url[]
+				$this::$push_css_url[]
 					= plugins_url( 'src/css/thx-ruby.css', __FILE__ );
-				$this::$js_url[]
+				$this::$push_js_url[]
 					= plugins_url( 'src/js/thx-ruby.js', __FILE__ );
 			}
 
 			//和欧間スペース
 			if ($thx_cc_option['wao_space'] == 1) {
 				if ($thx_cc_option['wao_space_js_php'] == 'jQuery') {
-					$this::$js_url[]
+					$this::$push_js_url[]
 						= plugins_url( 'src/js/thx-wao-space.js', __FILE__ );
 				} else {
 					add_filter('the_content', 'wao_space', 21000);
 					add_filter('the_category_content', 'wao_space', 21000);
 				}
 
-				$this::$css_url[]
+				$this::$push_css_url[]
 					= plugins_url( 'src/css/thx-wao-space.css', __FILE__ );
 			}
 
@@ -130,10 +130,10 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 		//キューイング
 		public function enqueue_scripts() {
 			$tCC = new thx_Customize_Core();
-			foreach ($this::$css_url as $url) {
+			foreach ($this::$push_css_url as $url) {
 				$tCC -> enqueue_file_style($url);
 			}
-			foreach ($this::$js_url as $url) {
+			foreach ($this::$push_js_url as $url) {
 				$tCC -> enqueue_file_script($url);
 			}
 		}//enqueue_scripts()
