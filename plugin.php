@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.1.0
+Version: 0.1.1
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -38,7 +38,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			$thx_cc_option = get_option('thx_cc_option');
 
 			//管理画面の設定
-			add_action('admin_menu', 'thx_admin_menu');
+			add_action('_admin_menu', 'thx_admin_menu');
 			add_action('admin_init', 'thx_settings_init');
 
 			//プラグインメニューの設定
