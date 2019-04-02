@@ -19,10 +19,10 @@ if( !$thx_cc_option ) {
 		// 'js_async_defer_array' => '',
 	);
 	update_option( 'thx_cc_option', $thx_cc_option );
-}
+}//if( !$thx_cc_option )
 
 function thx_admin_menu() {
-	//設定のサブメニューに追加する
+	//メインメニューに追加する
 	add_menu_page(
 		PLUG_IN_NAME.' の設定',
 		PLUG_IN_NAME,
@@ -41,7 +41,8 @@ function thx_admin_menu() {
 		'thx-jp-customize-core',
 		'thx_settings_plugin_options'
 	);
-}
+}//thx_admin_menu
+
 // フォームの枠組を出力する
 function thx_settings_plugin_options() {
 	// ユーザーが必要な権限を持つか確認する必要がある
@@ -66,6 +67,7 @@ function thx_settings_plugin_options() {
 	<?php
 	// var_dump($thx_cc_option);
 }
+
 // 管理画面の作成
 function thx_settings_init() {
 	register_setting('thx_settings-group', 'thx_cc_option');
@@ -184,53 +186,6 @@ function thx_settings_init() {
 			)
 		)
 	);
-
-	// //フックのカスタマイズ
-	// add_settings_field(
-	// 	'thx_hook_customize',
-	// 	'フックのカスタマイズ（β版）',
-	// 	'thx_checkbox_callback',
-	// 	'thx_expand_settings',
-	// 	'thx_expand_settings_section',
-	// 	array(
-	// 		'option_array_name' => 'hook_customize',
-	// 		'comment' => array(
-	// 			'1' => '「TypeSquare Webfonts for エックスサーバー」をフッターで読み込む',
-	// 		),
-	// 		'add' => '',
-	// 	)
-	// );
-
-	//コンテンツの置き換え
-
-	//jQueryの非同期読み込み
-	// add_settings_field(
-	// 	'thx_js_tag',
-	// 	'jQueryの非同期読み込み（β版）',
-	// 	'thx_single_checkbox_callback',
-	// 	'thx_expand_settings',
-	// 	'thx_expand_settings_section',
-	// 	array(
-	// 		'option_array_name' => 'js_tag',
-	// 		'comment' => 'html内の&lt;script&gt;タグを非同期で読み込む',
-	// 		'add' => 'thx_radio_callback',
-	// 		'arg' => array(
-	// 			'option_array_name' => 'js_async_defer',
-	// 			'comment' => array(
-	// 				'async' => 'async',
-	// 				'defer' => 'defer',
-	// 			),
-	// 			'add' => 'thx_textarea_callback',
-	// 			'arg' => array(
-	// 				'option_array_name' => 'js_async_defer_array',
-	// 				'comment' => '↓除外項目を改行区切りで入力',
-	// 				'placeholder' => '',
-	// 				'add' => '',
-	// 			)
-	// 		)
-	// 	)
-	// );
-
 }//function thx_settings_init()
 
 // コールバック
