@@ -32,13 +32,15 @@ function thx_admin_menu() {
 		'dashicons-admin-plugins',
 		30
 	);
-	// add_options_page(
-	// 	PLUG_IN_NAME,
-	// 	PLUG_IN_NAME,
-	// 	'manage_options',
-	// 	'thx-jp-customize-core',
-	// 	'thx_settings_plugin_options'
-	// );
+	//サブメニュー作成
+	add_submenu_page(
+		'thx-jp-customize-core',
+		'thx.jp/ の設定',
+		'thx.jp/',
+		'manage_options',
+		'thx-jp-customize-core',
+		'thx_settings_plugin_options'
+	);
 }
 // フォームの枠組を出力する
 function thx_settings_plugin_options() {
