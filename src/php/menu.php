@@ -88,6 +88,7 @@ function thx_settings_init() {
 		'thx_settings',
 		'thx_settings_section',
 		array(
+			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'antialiase',
 			'comment' => array(
 				'1' => '表示される文字にアンチエイリアス処理を施す',
@@ -106,6 +107,7 @@ function thx_settings_init() {
 		'thx_settings',
 		'thx_settings_section',
 		array(
+			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'text_size_adjust',
 			'comment' => array(
 				'1' => 'モバイル端末でのテキスト自動拡大を無効化',
@@ -124,6 +126,7 @@ function thx_settings_init() {
 		'thx_settings',
 		'thx_settings_section',
 		array(
+			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'remove_texturize',
 			'comment' => array(
 				'1' => '引用符などの自動変換機能を解除する',
@@ -142,6 +145,7 @@ function thx_settings_init() {
 		'thx_settings',
 		'thx_settings_section',
 		array(
+			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'ruby',
 			'comment' => array(
 				'1' => '行間の崩れないルビを使用する',
@@ -160,6 +164,7 @@ function thx_settings_init() {
 		'thx_settings',
 		'thx_settings_section',
 		array(
+			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'wao_space',
 			'comment' => array(
 				'1' => '和文と欧文の間にアキを設ける',
@@ -167,6 +172,7 @@ function thx_settings_init() {
 			// 'comment' => '和文と欧文の間にアキを設ける',
 			'add' => 'thx_radio_callback',
 			'arg' => array(
+				'option_name' => 'thx_cc_option',
 				'option_array_name' => 'wao_space_js_php',
 				'comment' => array(
 					'jQuery' => 'jQuery',
@@ -245,8 +251,11 @@ function thx_single_checkbox_callback($args) {
 function thx_checkbox_callback($args) {
 	if ($args['option_array_name']) {
 		$option_array_name = $args['option_array_name'];
-		$option_name = 'thx_cc_option['.$option_array_name.']';
-		$thx_option = get_option('thx_cc_option')[$option_array_name];
+		$option_name = $args['option_name'];
+		$thx_option = get_option($option_name)[$option_array_name];
+		$option_name = $option_name.'['.$option_array_name.']';
+		// $option_name = 'thx_cc_option['.$option_array_name.']';
+		// $thx_option = get_option('thx_cc_option')[$option_array_name];
 	} else {
 		$option_name = $args['option_name'];
 		$thx_option = get_option($option_name);
@@ -271,8 +280,11 @@ function thx_checkbox_callback($args) {
 function thx_radio_callback($args) {
 	if ($args['option_array_name']) {
 		$option_array_name = $args['option_array_name'];
-		$option_name = 'thx_cc_option['.$option_array_name.']';
-		$thx_option = get_option('thx_cc_option')[$option_array_name];
+		$option_name = $args['option_name'];
+		$thx_option = get_option($option_name)[$option_array_name];
+		$option_name = $option_name.'['.$option_array_name.']';
+		// $option_name = 'thx_cc_option['.$option_array_name.']';
+		// $thx_option = get_option('thx_cc_option')[$option_array_name];
 	} else {
 		$option_name = $args['option_name'];
 		$thx_option = get_option($option_name);
@@ -298,8 +310,11 @@ function thx_radio_callback($args) {
 function thx_textarea_callback($args) {
 	if ($args['option_array_name']) {
 		$option_array_name = $args['option_array_name'];
-		$option_name = 'thx_cc_option['.$option_array_name.']';
-		$thx_option = get_option('thx_cc_option')[$option_array_name];
+		$option_name = $args['option_name'];
+		$thx_option = get_option($option_name)[$option_array_name];
+		$option_name = $option_name.'['.$option_array_name.']';
+		// $option_name = 'thx_cc_option['.$option_array_name.']';
+		// $thx_option = get_option('thx_cc_option')[$option_array_name];
 	} else {
 		$option_name = $args['option_name'];
 		$thx_option = get_option($option_name);
