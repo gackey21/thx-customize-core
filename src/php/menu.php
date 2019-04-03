@@ -87,17 +87,17 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_antialiase',
 		'アンチエイリアス処理',
-		'thx_checkbox_callback',
-		// 'thx_single_checkbox_callback',
+		// 'thx_checkbox_callback',
+		'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'antialiase',
-			'comment' => array(
-				'1' => '表示される文字にアンチエイリアス処理を施す',
-			),
-			// 'comment' => '表示される文字にアンチエイリアス処理を施す',
+			// 'comment' => array(
+			// 	'1' => '表示される文字にアンチエイリアス処理を施す',
+			// ),
+			'comment' => '表示される文字にアンチエイリアス処理を施す',
 			'add' => ''
 		)
 	);
@@ -106,17 +106,17 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_text_size_adjust',
 		'テキストの自動拡大',
-		'thx_checkbox_callback',
-		// 'thx_single_checkbox_callback',
+		// 'thx_checkbox_callback',
+		'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'text_size_adjust',
-			'comment' => array(
-				'1' => 'モバイル端末でのテキスト自動拡大を無効化',
-			),
-			// 'comment' => 'モバイル端末でのテキスト自動拡大を無効化',
+			// 'comment' => array(
+			// 	'1' => 'モバイル端末でのテキスト自動拡大を無効化',
+			// ),
+			'comment' => 'モバイル端末でのテキスト自動拡大を無効化',
 			'add' => ''
 		)
 	);
@@ -125,17 +125,17 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_remove_texturize',
 		'引用符の解除',
-		'thx_checkbox_callback',
-		// 'thx_single_checkbox_callback',
+		// 'thx_checkbox_callback',
+		'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'remove_texturize',
-			'comment' => array(
-				'1' => '引用符などの自動変換機能を解除する',
-			),
-			// 'comment' => '引用符などの自動変換機能を解除する',
+			// 'comment' => array(
+			// 	'1' => '引用符などの自動変換機能を解除する',
+			// ),
+			'comment' => '引用符などの自動変換機能を解除する',
 			'add' => ''
 		)
 	);
@@ -144,17 +144,17 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_ruby',
 		'行間の崩れないルビ',
-		'thx_checkbox_callback',
-		// 'thx_single_checkbox_callback',
+		// 'thx_checkbox_callback',
+		'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'ruby',
-			'comment' => array(
-				'1' => '行間の崩れないルビを使用する',
-			),
-			// 'comment' => '行間の崩れないルビを使用する',
+			// 'comment' => array(
+			// 	'1' => '行間の崩れないルビを使用する',
+			// ),
+			'comment' => '行間の崩れないルビを使用する',
 			'add' => ''
 		)
 	);
@@ -163,17 +163,17 @@ function thx_settings_init() {
 	add_settings_field(
 		'thx_wao_space',
 		'和欧間スペース',
-		'thx_checkbox_callback',
-		// 'thx_single_checkbox_callback',
+		// 'thx_checkbox_callback',
+		'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_name' => 'thx_cc_option',
 			'option_array_name' => 'wao_space',
-			'comment' => array(
-				'1' => '和文と欧文の間にアキを設ける',
-			),
-			// 'comment' => '和文と欧文の間にアキを設ける',
+			// 'comment' => array(
+			// 	'1' => '和文と欧文の間にアキを設ける',
+			// ),
+			'comment' => '和文と欧文の間にアキを設ける',
 			'add' => 'thx_radio_callback',
 			'arg' => array(
 				'option_name' => 'thx_cc_option',
@@ -190,14 +190,26 @@ function thx_settings_init() {
 
 // コールバック
 function thx_single_checkbox_callback($args) {
-	$thx_cc_option = get_option('thx_cc_option');
-	$option_name = $args['option_array_name'];
-	$name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
+	// $thx_cc_option = get_option('thx_cc_option');
+	// $option_name = $args['option_array_name'];
+	if ($args['option_array_name']) {
+		$option_array_name = $args['option_array_name'];
+		$option_name = $args['option_name'];
+		$thx_option = get_option($option_name)[$option_array_name];
+		$option_name = $option_name.'['.$option_array_name.']';
+		// $option_name = 'thx_cc_option['.$option_array_name.']';
+		// $thx_option = get_option('thx_cc_option')[$option_array_name];
+	} else {
+		$option_name = $args['option_name'];
+		$thx_option = get_option($option_name);
+	}
+	$name_id = 'name="'.$option_name.'" id="'.$option_name.'"';
+	// $name_id = 'name="thx_cc_option['.$option_name.']" id="thx_'.$option_name.'"';
 	?>
 	<p>
 		<input type="hidden" <?=$name_id?> value="0" />
 		<input type="checkbox" <?=$name_id?> value="1"
-		<?php checked( $thx_cc_option[$option_name], 1 ); ?>
+		<?php checked( $thx_option, 1 ); ?>
 		/><?=$args['comment']?>
 	</p>
 	<?php
