@@ -229,19 +229,22 @@ function thx_checkbox_callback($args) {
 		$option_name = $args['option_name'];
 		$thx_option = get_option($option_name);
 	}
-	$key_comment = $args['comment'];
-	$name_id = 'name="'.$option_name.'" id="'.$option_name.'"';
+	$name_comment_flag = $args['comment'];
 	?>
-	<input type="hidden" <?=$name_id?> value="0" />
-	<?php foreach ($key_comment as $key => $comment): ?>
-	<p>
-		<input type="checkbox" <?=$name_id?> value=<?=$key?>
-		<?php checked( $thx_option, $key ); ?>
-		/>
-		<?=$comment?>
-	</p>
-	<?php endforeach; ?>
+	<?php foreach ($name_comment_flag as $name => $comment_flag): ?>
+		<?php foreach ($comment_flag as $comment => $flag): ?>
+			<?php $name_id = 'name="'.$option_name.'['.$name.']" id="'.$option_name.'"'; ?>
+			<p>
+				<input type="hidden" <?=$name_id?> value="0" />
+				<input type="checkbox" <?=$name_id?> value="1"
+				<?php checked( $thx_option[$name], "1" ); ?>
+				/>
+				<?=$comment?>
+			</p>
+		<?php endforeach;//$comment => $flag ?>
+	<?php endforeach;//$name => $comment_flag ?>
 	<?php
+	// var_dump($thx_option);
 	if ($args['add']) {
 		call_user_func($args['add'], $args['arg']);
 	}
