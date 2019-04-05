@@ -7,6 +7,9 @@ ruby {
 rt {
 	display: none;
 }
+.amp ruby {
+	display: inline;
+}
 .amp rt {
 	display: block;
 }
