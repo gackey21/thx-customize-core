@@ -93,6 +93,9 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 					= plugins_url( 'src/css/thx-wao-space.css', __FILE__ );
 			}
 
+			//管理画面にCSSを追加
+			add_action('admin_enqueue_scripts', array($this, 'enqueue_style_on_admin_page'));
+
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_scripts'));
 		}//__construct()
 
@@ -157,6 +160,11 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 			//キュー
 			wp_enqueue_script( $js_name, $js_url, array( 'jquery' ), false, true );
 		}//enqueue_file_script()
+
+		//管理画面にCSSを追加
+		public static function enqueue_style_on_admin_page() {
+			wp_enqueue_style( 'thx_jp', plugins_url( 'src/css/thx_jp.css', __FILE__ ));
+		}
 
 		//文字列を正規表現で置換
 		public static function str_preg_replace($str, $preg_array) {
