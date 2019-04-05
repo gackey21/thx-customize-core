@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.1.1
+Version: 0.1.2
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -102,14 +102,14 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 		}
 
 		//設定リンク追加
-		public function add_action_links ( $links ) {
+		public static function add_action_links ( $links ) {
 			$add_link = '<a href="admin.php?page=thx-jp-customize-core">設定</a>';
 			array_unshift( $links, $add_link);
 			return $links;
 		}
 
 		//ファイル読み込み
-		public function file_to_str($path) {
+		public static function file_to_str($path) {
 			require_once( ABSPATH.'wp-admin/includes/file.php' );
 			if ( WP_Filesystem() ) {
 				global $wp_filesystem;
@@ -119,7 +119,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 		}
 
 		//ファイル書き出し
-		public function str_to_file($path, $str) {
+		public static function str_to_file($path, $str) {
 			require_once( ABSPATH.'wp-admin/includes/file.php' );
 			if ( WP_Filesystem() ) {
 				global $wp_filesystem;
@@ -128,7 +128,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 		}
 
 		//キューイング
-		public function enqueue_scripts() {
+		public static function enqueue_scripts() {
 			$tCC = new thx_Customize_Core();
 			foreach ($this::$push_css_url as $url) {
 				$tCC -> enqueue_file_style($url);
@@ -139,7 +139,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 		}//enqueue_scripts()
 
 		//cssファイルをキューイング
-		public function enqueue_file_style($css_url) {
+		public static function enqueue_file_style($css_url) {
 			// cssのurlからファイル名のみ取り出す
 			$css_name = preg_replace('{.*\/}uis', '', $css_url);
 			// cssのファイル名から拡張子を除去
@@ -149,7 +149,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 		}//enqueue_file_style()
 
 		//jsファイルをキューイング
-		public function enqueue_file_script($js_url) {
+		public static function enqueue_file_script($js_url) {
 			// jsのurlからファイル名のみ取り出す
 			$js_name = preg_replace('{.*\/}uis', '', $js_url);
 			// jsのファイル名から拡張子を除去
