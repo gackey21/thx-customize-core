@@ -291,6 +291,11 @@ function thx_textarea_callback($args) {
 		$option_name = $args['option_name'];
 		$thx_option = get_option($option_name);
 	}
+	if (isset($args['rows'])) {
+		$rows = $args['rows'];
+	} else {
+		$rows = '4';
+	}
 	$comment = $args['comment'];
 	$placeholder = $args['placeholder'];
 	$name_id = 'name="'.$option_name.'" id="'.$option_name.'"';
@@ -303,7 +308,7 @@ function thx_textarea_callback($args) {
 	<?php if ($comment): ?>
 		<p><?=$comment?></p>
 	<?php endif; ?>
-	<textarea <?=$name_id?> cols="80" rows="4" placeholder=<?=$placeholder?>><?=$thx_option?></textarea>
+	<textarea <?=$name_id?> cols="80" rows=<?=$rows?> placeholder=<?=$placeholder?>><?=$thx_option?></textarea>
 	<?php
 	// var_dump($thx_option);
 }
