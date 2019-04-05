@@ -103,7 +103,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 		//設定リンク追加
 		public function add_action_links ( $links ) {
-			$add_link = '<a href="options-general.php?page=thx-jp-customize-core">設定</a>';
+			$add_link = '<a href="admin.php?page=thx-jp-customize-core">設定</a>';
 			array_unshift( $links, $add_link);
 			return $links;
 		}
