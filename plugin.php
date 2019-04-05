@@ -170,14 +170,14 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 		public static function str_preg_replace($str, $preg_array) {
 			//正規表現式の数だけループ
 			foreach ($preg_array as $preg_match => $replace) {
+				$str = preg_replace($preg_match, $replace, $str);
 
-				//$css内でマッチするものを$matchへ配列化
-				preg_match_all($preg_match, $str, $match);
-
-				//マッチした配列をループで置換
-				foreach ($match[1] as $value) {
-					$str = str_replace($value, $replace, $str);
-				}
+				// // $str内でマッチするものを$matchへ配列化
+				// preg_match_all($preg_match, $str, $match);
+				// // マッチした配列をループで置換
+				// foreach ($match[0] as $value) {
+				// 	$str = str_replace($value, $replace, $str);
+				// }
 			}
 			return $str;
 		}//str_preg_replace()
