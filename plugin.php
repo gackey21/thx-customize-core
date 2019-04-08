@@ -163,7 +163,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 		//管理画面にCSSを追加
 		public static function enqueue_style_on_admin_page() {
-			wp_enqueue_style( 'thx_jp', plugins_url( 'src/css/thx_jp.css', __FILE__ ));
+			wp_enqueue_style( 'thx_admin', plugins_url( 'src/css/thx_admin.css', __FILE__ ));
 		}
 
 		//文字列を正規表現で置換
