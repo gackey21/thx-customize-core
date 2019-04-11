@@ -3,7 +3,7 @@
 .entry-content h4,
 .entry-content h5,
 .entry-content h6 {
-  position: relative;
+	position: relative;
 }
 
 .entry-content h2::after,
@@ -11,12 +11,12 @@
 .entry-content h4::after,
 .entry-content h5::after,
 .entry-content h6::after {
-  position: absolute;
-  right: 4px;
-  font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  font-weight: 800;
-  line-height: 1em;
-  transition-duration: 0.3s;
+	position: absolute;
+	right: 4px;
+	font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+	font-weight: 800;
+	line-height: 1em;
+	transition-duration: 0.3s;
 }
 
 .entry-content h2:hover::after,
@@ -24,59 +24,59 @@
 .entry-content h4:hover::after,
 .entry-content h5:hover::after,
 .entry-content h6:hover::after {
-  transition-duration: 0.3s;
+	transition-duration: 0.3s;
 }
 
 .entry-content {
-  counter-reset: c-h2;
+	counter-reset: c-h2;
 }
 
 .entry-content h2 {
-  counter-increment: c-h2;
-  counter-reset: c-h3;
+	counter-increment: c-h2;
+	counter-reset: c-h3;
 }
 
 .entry-content h3 {
-  counter-increment: c-h3;
-  counter-reset: c-h4;
+	counter-increment: c-h3;
+	counter-reset: c-h4;
 }
 
 .entry-content h4 {
-  counter-increment: c-h4;
-  counter-reset: c-h5;
+	counter-increment: c-h4;
+	counter-reset: c-h5;
 }
 
 .entry-content h5 {
-  counter-increment: c-h5;
-  counter-reset: c-h6;
+	counter-increment: c-h5;
+	counter-reset: c-h6;
 }
 
 .entry-content h6 {
-  counter-increment: c-h6;
-  counter-reset: c-h7;
+	counter-increment: c-h6;
+	counter-reset: c-h7;
 }
 
 .entry-content h2::after {
-  font-size: 4rem;
-  content: counter(c-h2) ".";
+	font-size: 4rem;
+	content: counter(c-h2) ".";
 }
 
 .entry-content h3::after {
-  font-size: 3rem;
-  content: counter(c-h2) "-" counter(c-h3);
+	font-size: 3rem;
+	content: counter(c-h2) "-"counter(c-h3);
 }
 
 .entry-content h4::after {
-  font-size: 2rem;
-  content: counter(c-h2) "-" counter(c-h3) "-" counter(c-h4);
+	font-size: 2rem;
+	content: counter(c-h2) "-"counter(c-h3) "-"counter(c-h4);
 }
 
 .entry-content h5::after {
-  font-size: 1.25rem;
-  content: counter(c-h2) "-" counter(c-h3) "-" counter(c-h4) "-" counter(c-h5);
+	font-size: 1.25rem;
+	content: counter(c-h2) "-"counter(c-h3) "-"counter(c-h4) "-"counter(c-h5);
 }
 
 .entry-content h6::after {
-  font-size: 1rem;
-  content: counter(c-h2) "-" counter(c-h3) "-" counter(c-h4) "-" counter(c-h5) "-" counter(c-h6);
+	font-size: 1rem;
+	content: counter(c-h2) "-"counter(c-h3) "-"counter(c-h4) "-"counter(c-h5) "-"counter(c-h6);
 }
