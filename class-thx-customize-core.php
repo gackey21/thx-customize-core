@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.1.5
+Version: 0.1.6
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -56,26 +56,26 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 			}
 
 			//アンチエイリアス
-			if ( $thx_cc_option['antialiase'] == 1 ) {
+			if ( '1' === $thx_cc_option['antialiase'] ) {
 				$this::$push_css_url[]
 					= plugins_url( 'src/css/thx-antialiase.css', __FILE__ );
 			}
 
 			//テキストの自動拡大
-			if ( $thx_cc_option['text_size_adjust'] == 1 ) {
+			if ( '1' === $thx_cc_option['text_size_adjust'] ) {
 				$this::$push_css_url[]
 					= plugins_url( 'src/css/thx-text-size-adjust.css', __FILE__ );
 			}
 
 			//引用符の解除
-			if ( $thx_cc_option['remove_texturize'] == 1 ) {
+			if ( '1' === $thx_cc_option['remove_texturize'] ) {
 				remove_filter( 'the_content', 'wptexturize' );
 				remove_filter( 'the_excerpt', 'wptexturize' );
 				remove_filter( 'the_title', 'wptexturize' );
 			}
 
 			//行間の崩れないルビ
-			if ( $thx_cc_option['ruby'] == 1 ) {
+			if ( '1' === $thx_cc_option['ruby'] ) {
 				$this::$push_css_url[]
 					= plugins_url( 'src/css/thx-ruby.css', __FILE__ );
 				$this::$push_js_url[]
@@ -83,8 +83,8 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 			}
 
 			//和欧間スペース
-			if ( $thx_cc_option['wao_space'] == 1 ) {
-				if ( $thx_cc_option['wao_space_js_php'] == 'jQuery' ) {
+			if ( '1' === $thx_cc_option['wao_space'] ) {
+				if ( 'jQuery' === $thx_cc_option['wao_space_js_php'] ) {
 					$this::$push_js_url[]
 						= plugins_url( 'src/js/thx-wao-space.js', __FILE__ );
 				} else {
