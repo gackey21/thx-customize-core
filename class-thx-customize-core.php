@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.1.7
+Version: 0.1.8
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -131,12 +131,11 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 		//キューイング
 		public static function enqueue_scripts() {
-			$tCC = new Thx_Customize_Core();
 			foreach ( $this::$push_css_url as $url ) {
-				$tCC->enqueue_file_style( $url );
+				$this::enqueue_file_style( $url );
 			}
 			foreach ( $this::$push_js_url as $url ) {
-				$tCC->enqueue_file_script( $url );
+				$this::enqueue_file_script( $url );
 			}
 		}//enqueue_scripts()
 
