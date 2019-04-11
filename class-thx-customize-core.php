@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.1.4
+Version: 0.1.5
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -31,8 +31,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;}
 ?>
 <?php
-if ( ! class_exists( 'thx_Customize_Core' ) ) {
-	class thx_Customize_Core {
+if ( ! class_exists( 'Thx_Customize_Core' ) ) {
+	class Thx_Customize_Core {
 		//読み込むurl
 		static $push_js_url  = array();
 		static $push_css_url = array();
@@ -52,7 +52,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 			//アンインストール
 			if ( function_exists( 'register_uninstall_hook' ) ) {
-				register_uninstall_hook( __FILE__, 'thx_Customize_Core::thx_cc_uninstall' );
+				register_uninstall_hook( __FILE__, 'Thx_Customize_Core::thx_cc_uninstall' );
 			}
 
 			//アンチエイリアス
@@ -135,7 +135,7 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 
 		//キューイング
 		public static function enqueue_scripts() {
-			$tCC = new thx_Customize_Core();
+			$tCC = new Thx_Customize_Core();
 			foreach ( $this::$push_css_url as $url ) {
 				$tCC->enqueue_file_style( $url );
 			}
@@ -190,4 +190,4 @@ if ( ! class_exists( 'thx_Customize_Core' ) ) {
 require_once( 'src/php/menu.php' );
 require_once( 'src/php/wao.php' );
 
-new thx_Customize_Core;
+new Thx_Customize_Core;
