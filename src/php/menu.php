@@ -5,12 +5,12 @@ define( 'PLUG_IN_NAME', 'thx.jp/' );
 $thx_cc_option = get_option( 'thx_cc_option' );
 if ( ! $thx_cc_option ) {
 	$thx_cc_option = array(
-		'antialiase'       => 1,
-		'text_size_adjust' => 1,
-		'remove_texturize' => 1,
-		'wao_space'        => 1,
+		'antialiase'       => '1',
+		'text_size_adjust' => '1',
+		'remove_texturize' => '1',
+		'wao_space'        => '1',
 		'wao_space_js_php' => 'jQuery',
-		'ruby'             => 1,
+		'ruby'             => '1',
 		// 'hook_customize' => 0,
 		// 'hook_customize_array' => '',
 		// 'content_replace' => 0,
@@ -210,7 +210,7 @@ function thx_single_checkbox_callback( $args ) {
 	<p>
 		<input type="hidden" <?php echo $name_id; ?> value="0" />
 		<input type="checkbox" <?php echo $name_id; ?> value="1"
-		<?php checked( $thx_option, 1 ); ?>
+		<?php checked( $thx_option, '1' ); ?>
 		/><?php echo $args['comment']; ?>
 	</p>
 	<?php
