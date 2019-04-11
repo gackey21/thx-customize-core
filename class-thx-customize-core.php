@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.1.6
+Version: 0.1.7
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -39,6 +39,8 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 		public function __construct() {
 			$thx_cc_option = get_option( 'thx_cc_option' );
+			$src_css_url   = plugins_url( 'src/css/', __FILE__ );
+			$src_js_url    = plugins_url( 'src/js/', __FILE__ );
 
 			//管理画面の設定
 			add_action( '_admin_menu', 'thx_admin_menu' );
@@ -57,14 +59,12 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 			//アンチエイリアス
 			if ( '1' === $thx_cc_option['antialiase'] ) {
-				$this::$push_css_url[]
-					= plugins_url( 'src/css/thx-antialiase.css', __FILE__ );
+				$this::$push_css_url[] = $src_css_url . 'thx-antialiase.css';
 			}
 
 			//テキストの自動拡大
 			if ( '1' === $thx_cc_option['text_size_adjust'] ) {
-				$this::$push_css_url[]
-					= plugins_url( 'src/css/thx-text-size-adjust.css', __FILE__ );
+				$this::$push_css_url[] = $src_css_url . 'thx-text-size-adjust.css';
 			}
 
 			//引用符の解除
@@ -76,24 +76,20 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 			//行間の崩れないルビ
 			if ( '1' === $thx_cc_option['ruby'] ) {
-				$this::$push_css_url[]
-					= plugins_url( 'src/css/thx-ruby.css', __FILE__ );
-				$this::$push_js_url[]
-  = plugins_url( 'src/js/thx-ruby.js', __FILE__ );
+				$this::$push_css_url[] = $src_css_url . 'thx-ruby.css';
+				$this::$push_js_url[]  = $src_js_url . 'thx-ruby.js';
 			}
 
 			//和欧間スペース
 			if ( '1' === $thx_cc_option['wao_space'] ) {
 				if ( 'jQuery' === $thx_cc_option['wao_space_js_php'] ) {
-					$this::$push_js_url[]
-						= plugins_url( 'src/js/thx-wao-space.js', __FILE__ );
+					$this::$push_js_url[] = $src_js_url . 'thx-wao-space.js';
 				} else {
 					add_filter( 'the_content', 'wao_space', 21000 );
 					add_filter( 'the_category_content', 'wao_space', 21000 );
 				}
 
-				$this::$push_css_url[]
-					= plugins_url( 'src/css/thx-wao-space.css', __FILE__ );
+				$this::$push_css_url[] = $src_css_url . 'thx-wao-space.css';
 			}
 
 			//管理画面にCSSを追加
