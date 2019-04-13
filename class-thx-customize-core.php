@@ -14,7 +14,7 @@ License: GPL2
 
 		This program is free software; you can redistribute it and/or modify
 		it under the terms of the GNU General Public License, version 2, as
-		 published by the Free Software Foundation.
+		published by the Free Software Foundation.
 
 		This program is distributed in the hope that it will be useful,
 		but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -83,20 +83,23 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 			//和欧間スペース
 			if ( '1' === $thx_cc_option['wao_space'] ) {
 				if ( 'jQuery' === $thx_cc_option['wao_space_js_php'] ) {
+					//jQueryの場合はjsファイルをプッシュ
 					$this::$push_js_url[] = $src_js_url . 'thx-wao-space.js';
 				} else {
+					//phpの場合はwao_space()をフック
 					add_filter( 'the_content', 'wao_space', 21000 );
 					add_filter( 'the_category_content', 'wao_space', 21000 );
 				}
-
+				//jQuery、phpどちらの場合でもcssファイルをプッシュ
 				$this::$push_css_url[] = $src_css_url . 'thx-wao-space.css';
 			}
 
 			//管理画面にCSSを追加
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_style_on_admin_page' ) );
 
+			//キュー実行
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-		}//__construct()
+		}//__construct()__construct()__construct()__construct()__construct()__construct()
 
 		//アインインストール時にオプション削除
 		static function thx_cc_uninstall() {
