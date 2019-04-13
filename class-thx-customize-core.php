@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.1.9
+Version: 0.2.0
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -59,12 +59,12 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 			//アンチエイリアス
 			if ( '1' === $thx_cc_option['antialiase'] ) {
-				$this::$push_css_url[] = $src_css_url . 'thx-antialiase.css';
+				self::$push_css_url[] = $src_css_url . 'thx-antialiase.css';
 			}
 
 			//テキストの自動拡大
 			if ( '1' === $thx_cc_option['text_size_adjust'] ) {
-				$this::$push_css_url[] = $src_css_url . 'thx-text-size-adjust.css';
+				self::$push_css_url[] = $src_css_url . 'thx-text-size-adjust.css';
 			}
 
 			//引用符の解除
@@ -76,22 +76,22 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 			//行間の崩れないルビ
 			if ( '1' === $thx_cc_option['ruby'] ) {
-				$this::$push_css_url[] = $src_css_url . 'thx-ruby.css';
-				$this::$push_js_url[]  = $src_js_url . 'thx-ruby.js';
+				self::$push_css_url[] = $src_css_url . 'thx-ruby.css';
+				self::$push_js_url[]  = $src_js_url . 'thx-ruby.js';
 			}
 
 			//和欧間スペース
 			if ( '1' === $thx_cc_option['wao_space'] ) {
 				if ( 'jQuery' === $thx_cc_option['wao_space_js_php'] ) {
 					//jQueryの場合はjsファイルをプッシュ
-					$this::$push_js_url[] = $src_js_url . 'thx-wao-space.js';
+					self::$push_js_url[] = $src_js_url . 'thx-wao-space.js';
 				} else {
 					//phpの場合はwao_space()をフック
 					add_filter( 'the_content', 'wao_space', 21000 );
 					add_filter( 'the_category_content', 'wao_space', 21000 );
 				}
 				//jQuery、phpどちらの場合でもcssファイルをプッシュ
-				$this::$push_css_url[] = $src_css_url . 'thx-wao-space.css';
+				self::$push_css_url[] = $src_css_url . 'thx-wao-space.css';
 			}
 
 			//管理画面にCSSを追加
@@ -134,11 +134,11 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 		//キューイング
 		public static function enqueue_scripts() {
-			foreach ( $this::$push_css_url as $url ) {
-				$this::enqueue_file_style( $url );
+			foreach ( self::$push_css_url as $url ) {
+				self::enqueue_file_style( $url );
 			}
-			foreach ( $this::$push_js_url as $url ) {
-				$this::enqueue_file_script( $url );
+			foreach ( self::$push_js_url as $url ) {
+				self::enqueue_file_script( $url );
 			}
 		}//enqueue_scripts()
 
