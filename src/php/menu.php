@@ -1,5 +1,7 @@
-<?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;}
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 //プラグイン名
 define( 'PLUG_IN_NAME', 'thx.jp/' );
 $thx_cc_option = get_option( 'thx_cc_option' );

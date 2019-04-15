@@ -28,7 +28,8 @@ License: GPL2
 ?>
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;}
+	exit;
+}
 ?>
 <?php
 if ( ! class_exists( 'Thx_Customize_Core' ) ) {

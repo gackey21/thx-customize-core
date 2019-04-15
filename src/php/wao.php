@@ -1,5 +1,7 @@
-<?php if ( ! defined( 'ABSPATH' ) ) {
-	exit;}
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 //和欧間スペース
 function wao_space( $the_content ) {
 	//alt内の「>」を文字参照に
