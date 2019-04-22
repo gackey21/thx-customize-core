@@ -37,14 +37,18 @@ function wao_space( $the_content ) {
 	// var_dump($pairing);
 	// var_dump('</pre>');
 	foreach ( $pairing as $value ) {
-		$str          = trim( $value[0] );
-		$tag          = $value[1];
-		$the_content
-		.= preg_replace(
-			$ltn_match,
-			$ltn_replece,
-			$str
-		) . $tag;
+		$str = trim( $value[0] );
+		$tag = $value[1];
+		if ( '</style>' === $tag ) {
+			$the_content .= $str . $tag;
+		} else {
+			$the_content
+			.= preg_replace(
+				$ltn_match,
+				$ltn_replece,
+				$str
+			) . $tag;
+		}
 	}
 	return $the_content;
 }//wao_space($the_content)
