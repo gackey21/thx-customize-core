@@ -299,9 +299,19 @@ function thx_textarea_callback( $args ) {
 	} else {
 		$rows = '4';
 	}
-	$comment     = $args['comment'];
-	$placeholder = $args['placeholder'];
-	$name_id     = 'name="' . $option_name . '" id="' . $option_name . '"';
+	if ( isset( $args['comment'] ) ) {
+		$comment = $args['comment'];
+	} else {
+		$comment = '';
+	}
+
+	if ( isset( $args['placeholder'] ) ) {
+		$placeholder = $args['placeholder'];
+	} else {
+		$placeholder = '';
+	}
+
+	$name_id = 'name="' . $option_name . '" id="' . $option_name . '"';
 	// $thx_cc_option = get_option('thx_cc_option');
 	// $option_name = $args['option_array_name'];
 	// $comment = $args['comment'];
