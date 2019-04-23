@@ -325,3 +325,54 @@ function thx_textarea_callback( $args ) {
 	<?php
 	// var_dump($thx_option);
 }
+function thx_date_url_callback( $args ) {
+	if ( $args['option_array_name'] ) {
+		$option_array_name = $args['option_array_name'];
+		$option_name       = $args['option_name'];
+		$comment           = $args['comment'];
+		$thx_option        = get_option( $option_name )[ $option_array_name ];
+		$option_name       = $option_name . '[' . $option_array_name . ']';
+	} else {
+		$option_name = $args['option_name'];
+		$thx_option  = get_option( $option_name );
+	}
+	?>
+	<table>
+		<tr>
+			<td></td>
+			<td>確認日</td>
+			<td>有効期限</td>
+			<td>url</td>
+		</tr>
+
+		<?php
+		foreach ( $comment as $dis ) {
+			if ( ! isset( $thx_option[ $dis ] ) ) {
+				$thx_option[ $dis ] = array(
+					'checked_date' => '',
+					'expired_date' => '',
+					'url'          => '',
+				);
+			}
+			// var_dump( $thx_option );
+			// echo '<br />';
+			$option_checked_date  = $option_name . "[$dis][checked_date]";
+			$option_expired_date  = $option_name . "[$dis][expired_date]";
+			$option_url           = $option_name . "[$dis][url]";
+			$name_id_checked_date = 'name="' . $option_checked_date . '" id="' . $option_checked_date . '" value="' . $thx_option[ $dis ]['checked_date'] . '"';
+			$name_id_expired_date = 'name="' . $option_expired_date . '" id="' . $option_expired_date . '" value="' . $thx_option[ $dis ]['expired_date'] . '"';
+			$name_id_url          = 'name="' . $option_url . '" id="' . $option_url . '" value="' . $thx_option[ $dis ]['url'] . '"';
+			?>
+			<tr>
+				<td><?php echo $dis; ?></td>
+				<td><input type="text" <?php echo $name_id_checked_date; ?>></input></td>
+				<td><input type="date" <?php echo $name_id_expired_date; ?>></input></td>
+				<td><input type="text" <?php echo $name_id_url; ?>></input></td>
+			</tr>
+			<?php
+		}
+		?>
+	</table>
+	<?php
+	// var_dump( $thx_option );
+}
