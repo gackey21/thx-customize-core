@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 //プラグイン名
-define( 'PLUG_IN_NAME', 'thx.jp/' );
+// define( 'PLUG_IN_NAME', 'thx.jp/' );
 $thx_cc_option = get_option( 'thx_cc_option' );
 if ( ! $thx_cc_option ) {
 	$thx_cc_option = array(
@@ -27,8 +27,8 @@ if ( ! $thx_cc_option ) {
 function thx_admin_menu() {
 	//メインメニューに追加する
 	add_menu_page(
-		PLUG_IN_NAME . ' の設定',
-		PLUG_IN_NAME,
+		'thx.jp/ の設定',
+		'thx.jp/',
 		'manage_options',
 		'thx-jp-customize-core',
 		'thx_settings_plugin_options',
