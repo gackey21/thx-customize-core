@@ -13,6 +13,7 @@ if ( ! $thx_cc_option ) {
 		'wao_space'        => '1',
 		'wao_space_js_php' => 'jQuery',
 		'ruby'             => '1',
+		'keep_option'      => '1',
 		// 'hook_customize' => 0,
 		// 'hook_customize_array' => '',
 		// 'content_replace' => 0,
@@ -187,6 +188,21 @@ function thx_settings_init() {
 				),
 				'add'               => '',
 			),
+		)
+	);
+
+	//オプションの保持
+	add_settings_field(
+		'thx_keep_option',
+		'設定の保持',
+		'thx_single_checkbox_callback',
+		'thx_settings',
+		'thx_settings_section',
+		array(
+			'option_name'       => 'thx_cc_option',
+			'option_array_name' => 'keep_option',
+			'comment'           => 'アンインストール時に設定を残す',
+			'add'               => '',
 		)
 	);
 }//function thx_settings_init()

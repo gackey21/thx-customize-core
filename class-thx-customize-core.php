@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.2.1
+Version: 0.2.2
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -104,7 +104,10 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 		//アインインストール時にオプション削除
 		static function thx_cc_uninstall() {
-			delete_option( 'thx_cc_option' );
+			$thx_cc_option = get_option( 'thx_cc_option' );
+			if ( '1' !== $thx_cc_option['keep_option'] ) {
+				delete_option( 'thx_cc_option' );
+			}
 		}
 
 		//設定リンク追加
