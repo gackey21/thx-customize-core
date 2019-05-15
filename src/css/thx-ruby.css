@@ -1,16 +1,11 @@
 /* 行間の崩れないルビ */
 ruby {
 	position: relative;
-	display: inline-block;
 	text-align: center;
 }
 
 rt {
 	display: none;
-}
-
-.amp ruby {
-	display: inline;
 }
 
 .amp rt {
@@ -22,6 +17,8 @@ rt {
 }
 
 .thx_yomi {
+	-webkit-user-select: none;
+	user-select: none;
 	font-size: 0.5em;
 	position: absolute;
 	display: inline-flex;
@@ -38,4 +35,9 @@ rt {
 
 .thx_yomi_mono {
 	display: inline-block;
+}
+
+.thx_quo_spc {
+	-webkit-user-select: none;
+	user-select: none;
 }
