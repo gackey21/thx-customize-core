@@ -16,6 +16,14 @@ rt {
 	display: block;
 }
 
+.gecko rt {
+	display: ruby-text;
+}
+
+.gecko .thx_yomi {
+	display: none;
+}
+
 .thx_yomi {
 	-webkit-user-select: none;
 	user-select: none;
