@@ -12,9 +12,9 @@ jQuery(window).on('load', function() {
 		yomigana = jQuery(this).children("rt").text();
 		yomigana_length = yomigana.length * fz / 2;
 
-		if (yomigana.length == 1) {
-			yomigana_span += ' thx_yomi_mono';
-		}
+		// if (yomigana.length == 1) {
+		// 	yomigana_span += ' thx_yomi_mono';
+		// }
 
 		if (yomigana_length + fz / 2 > ow) {
 			yomigana_span += ' thx_yomi_long';
