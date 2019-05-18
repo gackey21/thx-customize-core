@@ -100,6 +100,9 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 
 			//キュー実行
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+
+			//ブラウザ判別
+			add_filter( 'body_class', array( $this, 'browser_body_class' ) );
 		}//__construct()__construct()__construct()__construct()__construct()__construct()
 
 		//アインインストール時にオプション削除
@@ -196,6 +199,34 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 				return false;
 			}
 		}//check_url_exist( $url )
+
+		//ブラウザ判別
+		function browser_body_class( $classes ) {
+			global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+
+			if ( $is_lynx ) {
+				$classes[] = 'lynx';
+			} elseif ( $is_gecko ) {
+				$classes[] = 'gecko';
+			} elseif ( $is_opera ) {
+				$classes[] = 'opera';
+			} elseif ( $is_NS4 ) {
+				$classes[] = 'ns4';
+			} elseif ( $is_safari ) {
+				$classes[] = 'safari';
+			} elseif ( $is_chrome ) {
+				$classes[] = 'chrome';
+			} elseif ( $is_IE ) {
+				$classes[] = 'ie';
+			} else {
+				$classes[] = 'unknown';
+			}
+
+			if ( $is_iphone ) {
+				$classes[] = 'iphone';
+			}
+			return $classes;
+		}//browser_body_class( $classes )
 	}//class
 }//! class_exists
 
