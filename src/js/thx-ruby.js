@@ -20,8 +20,9 @@ jQuery(window).on('load', function() {
 			yomigana_span += ' thx_yomi_long';
 		}
 
-		var ts = - (fz / 2);
-		yomigana_span += '" style="top: ' + ts + 'px">';
+		// var ts = - (fz / 2);
+		// yomigana_span += '" style="top: ' + ts + 'px">';
+		yomigana_span += '">';
 
 		var q_space_length = (yomigana_length - ow) / fz * 2;
 		var span_q_space = '';

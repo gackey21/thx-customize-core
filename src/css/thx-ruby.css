@@ -30,6 +30,7 @@ rt {
 	position: absolute;
 	display: inline-flex;
 	justify-content: space-between;
+	top: -0.5em;
 	left: 0.25em;
 	right: 0.25em;
 	line-height: 1em;
