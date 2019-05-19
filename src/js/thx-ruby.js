@@ -8,6 +8,7 @@ jQuery(window).on('load', function() {
 		var yomigana;
 		var yomigana_span = '<div class="thx_yomi';
 
+		ow = Math.ceil(ow / fz * 2) * fz / 2;
 		ruby_html = jQuery(this).html();
 		yomigana = jQuery(this).children("rt").text();
 		yomigana_length = yomigana.length * fz / 2;
