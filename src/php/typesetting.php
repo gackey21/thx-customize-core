@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-//和欧間スペース
+//簡易的な日本語組版
 function thx_typesetting( $the_content ) {
 	// ブラウザ判別用
 	global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
