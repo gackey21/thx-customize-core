@@ -10,9 +10,8 @@ if ( ! $thx_cc_option ) {
 		'antialiase'       => '1',
 		'text_size_adjust' => '1',
 		'remove_texturize' => '1',
-		'wao_space'        => '1',
-		'wao_space_js_php' => 'jQuery',
 		'ruby'             => '1',
+		'typesetting'      => '1',
 		'keep_option'      => '1',
 		// 'hook_customize' => 0,
 		// 'hook_customize_array' => '',
@@ -163,31 +162,18 @@ function thx_settings_init() {
 		)
 	);
 
-	//和欧間スペース
+	//簡易的な日本語組版処理
 	add_settings_field(
-		'thx_wao_space',
-		'和欧間スペース',
-		// 'thx_checkbox_callback',
+		'thx_typesetting',
+		'簡易的な日本語組版処理',
 		'thx_single_checkbox_callback',
 		'thx_settings',
 		'thx_settings_section',
 		array(
 			'option_name'       => 'thx_cc_option',
-			'option_array_name' => 'wao_space',
-			// 'comment' => array(
-			// 	'1' => '和文と欧文の間にアキを設ける',
-			// ),
-			'comment'           => '和文と欧文の間にアキを設ける',
-			'add'               => 'thx_radio_callback',
-			'arg'               => array(
-				'option_name'       => 'thx_cc_option',
-				'option_array_name' => 'wao_space_js_php',
-				'comment'           => array(
-					'jQuery' => 'jQuery',
-					'php'    => 'php',
-				),
-				'add'               => '',
-			),
+			'option_array_name' => 'typesetting',
+			'comment'           => '役物ツメ・ぶら下がり・和欧間スペースの付与を行う',
+			'add'               => '',
 		)
 	);
 

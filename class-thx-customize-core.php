@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.2.2
+Version: 0.3.0
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -81,18 +81,11 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 				self::$push_js_url[]  = $src_js_url . 'thx-ruby.js';
 			}
 
-			//和欧間スペース
-			if ( '1' === $thx_cc_option['wao_space'] ) {
-				if ( 'jQuery' === $thx_cc_option['wao_space_js_php'] ) {
-					//jQueryの場合はjsファイルをプッシュ
-					self::$push_js_url[] = $src_js_url . 'thx-wao-space.js';
-				} else {
-					//phpの場合はwao_space()をフック
-					add_filter( 'the_content', 'wao_space', 21000 );
-					add_filter( 'the_category_content', 'wao_space', 21000 );
-				}
-				//jQuery、phpどちらの場合でもcssファイルをプッシュ
-				self::$push_css_url[] = $src_css_url . 'thx-wao-space.css';
+			//簡易的な日本語組版処理
+			if ( '1' === $thx_cc_option['typesetting'] ) {
+				self::$push_css_url[] = $src_css_url . 'thx-typesetting.css';
+				add_filter( 'the_content', 'thx_typesetting', 21000 );
+				add_filter( 'the_category_content', 'thx_typesetting', 21000 );
 			}
 
 			//管理画面にCSSを追加
@@ -231,6 +224,6 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 }//! class_exists
 
 require_once( 'src/php/menu.php' );
-require_once( 'src/php/wao.php' );
+require_once( 'src/php/typesetting.php' );
 
 new Thx_Customize_Core;
