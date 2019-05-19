@@ -20,7 +20,8 @@ body {
 
 /* 和欧間スペース */
 .thx_wao_spc {
-	font-family: FontAwesome;
+	font-family: Kosugi;
+	font-size: 0.5em;
 	line-height: 0;
 	-webkit-user-select: none;
 	user-select: none;
@@ -37,14 +38,12 @@ body {
 }
 
 .gecko .thx_clps_spc {
-	font-family: FontAwesome;
-	font-size: 2em;
+	font-family: Kosugi;
 	line-height: 0;
 }
 
 .safari .thx_clps_spc {
-	font-family: FontAwesome;
-	font-size: 2em;
+	font-family: Kosugi;
 	line-height: 0;
 }
 
