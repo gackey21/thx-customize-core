@@ -1,6 +1,7 @@
-/* 禁則処理 */
+/* 禁則処理と両端揃え*/
 body {
 	line-break: strict;
+	text-align: justify;
 }
 
 /* ぶら下げ */
