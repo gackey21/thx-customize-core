@@ -69,7 +69,7 @@ body {
 }
 
 .gecko .thx_punc_wrap + .thx_clps_spc {
-	margin-left: 0.25em;
+	font-size: 2em;
 }
 
 .thx_punctuation {
