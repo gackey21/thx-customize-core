@@ -90,7 +90,6 @@ body {
 /* 中黒 */
 :not(code)>.thx_mid_dot {
 	font-feature-settings: "halt";
-	margin: 0 0.25em;
 }
 
 :not(code)>.thx_clps_spc + .thx_mid_dot {
@@ -99,10 +98,6 @@ body {
 
 :not(code)>.thx_mid_dot + .thx_clps_spc {
 	margin-left: -0.25em;
-}
-
-.chrome :not(code)>.thx_mid_dot + .thx_clps_spc {
-	margin-left: -0.5em;
 }
 
 /* 括弧 */
