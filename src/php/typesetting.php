@@ -80,6 +80,12 @@ function thx_typesetting( $the_content ) {
 						'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_closing_bracket">.*?</span>)}uis' => function ( $match ) {
 							return $match[2];
 						},
+						'{(<span class = "thx_clps_spc"> </span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
+							return $match[1];
+						},
+						'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_clps_spc"> </span>)}uis' => function ( $match ) {
+							return $match[2];
+						},
 					],
 					$str
 				)//preg_replace_callback_array()
