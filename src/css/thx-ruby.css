@@ -36,15 +36,21 @@ rt {
 	line-height: 1em;
 }
 
-.thx_yomi span {
-	transform: scale(0.5, 0.5);
-	transform-origin: top left;
-	width: 0.5em;
+.thx_yomi_mono {
+	display: inline-block;
+	transform: scale(0.5);
+	transform-origin-y: top;
 }
 
 .thx_yomi_long {
 	left: 0px;
 	right: 0px;
+}
+
+.thx_yomi span {
+transform: scale(0.5, 0.5);
+transform-origin: top left;
+width: 0.5em;
 }
 
 .thx_quo_spc {
