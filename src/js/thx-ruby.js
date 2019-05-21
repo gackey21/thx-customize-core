@@ -30,9 +30,9 @@ jQuery(window).on('load', function() {
 		if (yomigana_length > ow) {
 			span_q_space = '<span class="thx_quo_spc">';
 			for (var i = 0; i < q_space_length; i++) {
-				span_q_space += '&#x2005;'
+				span_q_space += '&#x2005;';
 			}
-			span_q_space += '</span>'
+			span_q_space += '</span>';
 		}
 		for (var i = 0; i < yomigana.length; i++) {
 			yomigana_span += '<span>' + yomigana.substr(i, 1) + '</span>';
