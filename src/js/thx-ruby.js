@@ -3,7 +3,10 @@ jQuery(window).on('load', function() {
 	jQuery('ruby').each(function() {
 		var lh = parseInt(jQuery(this).css('line-height'));
 
+			// <rt>を非表示にした状態でouterWidthを取得
 			var ruby_html = jQuery(this).html();
+			var rt_none   = ruby_html.replace('<rt>', '<rt style="display: none;">');
+			jQuery(this).html(rt_none);
 
 		// <div class="thx_yomi…>の作成
 			var fz = parseInt(jQuery(this).css('font-size'));
@@ -13,6 +16,8 @@ jQuery(window).on('load', function() {
 		if ((yomigana.length == 1) && (ow > fz)) {
 			yomigana_span += ' thx_yomi_mono';
 		}
+			// <rt>非表示の解除
+			// jQuery(this).html(ruby_html);
 
 		if (yomigana_length + fz / 2 > ow) {
 			yomigana_span += ' thx_yomi_long';
