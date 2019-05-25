@@ -23,6 +23,10 @@ body {
 	user-select: none;
 }
 
+code .thx_wao_spc {
+	display: none;
+}
+
 /* 相殺スペース */
 .thx_clps_spc {
 	-webkit-user-select: none;
@@ -44,8 +48,12 @@ body {
 	line-height: 0;
 }
 
+code .thx_clps_spc {
+	display: none;
+}
+
 /* 句読点 */
-:not(code)>.thx_clps_spc + .thx_punc_wrap {
+.thx_clps_spc + .thx_punc_wrap {
 	margin-left: -0.5em;
 }
 
@@ -70,6 +78,11 @@ body {
 	position: absolute;
 	font-feature-settings: "halt";
 	line-height: 1em;
+}
+
+code .thx_punctuation {
+	position: relative;
+	font-feature-settings: "fwid";
 }
 
 .chrome .thx_punctuation {
