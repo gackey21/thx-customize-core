@@ -4,11 +4,6 @@ body {
 	text-align: justify;
 }
 
-/* ぶら下げ */
-.safari {
-	hanging-punctuation: allow-end;
-}
-
 /* 全角化 */
 .thx_fwid {
 	font-feature-settings: "fwid";
@@ -72,6 +67,15 @@ body {
 	font-size: 2em;
 }
 
+.safari .thx_punc_wrap {
+	position: relative;
+	display: inline-block;
+}
+
+.safari .thx_punc_wrap + .thx_clps_spc {
+	font-size: 2em;
+}
+
 .thx_punctuation {
 	position: absolute;
 	font-feature-settings: "halt";
@@ -84,6 +88,11 @@ body {
 }
 
 .gecko .thx_punctuation {
+	/* position: absolute; */
+	bottom: -0.15em;
+}
+
+.safari .thx_punctuation {
 	/* position: absolute; */
 	bottom: -0.15em;
 }
