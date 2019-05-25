@@ -56,5 +56,10 @@ jQuery(window).on('load', function() {
 
 		jQuery(this).html(span_q_space + ruby_html + span_q_space + yomigana_span);
 		});//jQuery('ruby').each
+
+		//<rt>内を削除
+		jQuery('rt').each(function() {
+			jQuery(this).html('');
+		});
 	}//if (jQuery('body').hasClass('chrome')||jQuery('body').hasClass('safari'))
 });
