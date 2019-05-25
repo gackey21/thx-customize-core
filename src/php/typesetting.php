@@ -74,10 +74,10 @@ function thx_typesetting( $the_content ) {
 						'{[）｝］〕」』】〉》]}uis'      => function ( $match ) {
 							return '<span class = "thx_closing_bracket">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
 						},
-						'{(<span class = "thx_opening_bracket">.*?</span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
+						'{(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
 							return $match[1];
 						},
-						'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_closing_bracket">.*?</span>)}uis' => function ( $match ) {
+						'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)}uis' => function ( $match ) {
 							return $match[2];
 						},
 						'{(<span class = "thx_clps_spc"> </span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
