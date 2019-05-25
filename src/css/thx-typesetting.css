@@ -118,3 +118,8 @@ code .thx_punctuation {
 :not(code)>.thx_closing_bracket {
 	font-feature-settings: "halt";
 }
+
+.thx_opening_bracket + .thx_clps_spc + .thx_opening_bracket,
+.thx_closing_bracket + .thx_clps_spc + .thx_closing_bracket {
+	margin-left: -0.5em;
+}
