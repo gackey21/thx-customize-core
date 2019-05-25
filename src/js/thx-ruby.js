@@ -1,17 +1,14 @@
 /* ルビ */
 jQuery(window).on('load', function() {
 	jQuery('ruby').each(function() {
-		var fz = parseInt(jQuery(this).css('font-size'));
 		var lh = parseInt(jQuery(this).css('line-height'));
-		var ow = jQuery(this).outerWidth();
-				ow = Math.round(ow / fz * 2) * fz / 2;
-		var ruby_html       = jQuery(this).html();
-		var yomigana        = jQuery(this).children("rt").text();
-		var yomigana_length = yomigana.length * fz / 2;
 
+			var ruby_html = jQuery(this).html();
 
 		// <div class="thx_yomi…>の作成
-		var yomigana_span = '<div class="thx_yomi';
+			var fz = parseInt(jQuery(this).css('font-size'));
+			var ow = jQuery(this).outerWidth();
+					ow = Math.round(ow / fz * 2) * fz / 2;
 
 		if ((yomigana.length == 1) && (ow > fz)) {
 			yomigana_span += ' thx_yomi_mono';
@@ -22,6 +19,9 @@ jQuery(window).on('load', function() {
 		}
 
 		yomigana_span += '">';
+			var yomigana        = jQuery(this).children("rt").text();
+			var yomigana_length = yomigana.length * fz / 2;
+			var yomigana_span   = '<div class="thx_yomi';
 
 		// よみがなのループ
 		for (var i = 0; i < yomigana.length; i++) {
