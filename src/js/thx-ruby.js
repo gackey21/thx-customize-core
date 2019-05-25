@@ -53,8 +53,8 @@ jQuery(window).on('load', function() {
 
 
 			// htmlの合成
+			jQuery(this).html(yomigana_span + span_q_space + ruby_html + span_q_space);
 
-		jQuery(this).html(span_q_space + ruby_html + span_q_space + yomigana_span);
 		});//jQuery('ruby').each
 
 		//<rt>内を削除
