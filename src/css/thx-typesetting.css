@@ -86,17 +86,14 @@ code .thx_punctuation {
 }
 
 .chrome .thx_punctuation {
-	/* position: absolute; */
 	bottom: -0.1em;
 }
 
 .gecko .thx_punctuation {
-	/* position: absolute; */
 	bottom: -0.15em;
 }
 
 .safari .thx_punctuation {
-	/* position: absolute; */
 	bottom: -0.15em;
 }
 
