@@ -73,17 +73,18 @@ body {
 }
 
 .thx_punctuation {
+	position: absolute;
 	font-feature-settings: "halt";
 	line-height: 1em;
 }
 
 .chrome .thx_punctuation {
-	position: absolute;
+	/* position: absolute; */
 	bottom: -0.1em;
 }
 
 .gecko .thx_punctuation {
-	position: absolute;
+	/* position: absolute; */
 	bottom: -0.15em;
 }
 
