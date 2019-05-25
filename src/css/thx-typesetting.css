@@ -49,7 +49,7 @@ body {
 	margin-left: -0.5em;
 }
 
-.chrome :not(code)>.thx_punc_wrap {
+.thx_punc_wrap {
 	position: relative;
 	display: inline-block;
 }
@@ -58,18 +58,8 @@ body {
 	font-feature-settings: "fwid";
 }
 
-.gecko :not(code)>.thx_punc_wrap {
-	position: relative;
-	display: inline-block;
-}
-
 .gecko .thx_punc_wrap + .thx_clps_spc {
 	font-size: 2em;
-}
-
-.safari .thx_punc_wrap {
-	position: relative;
-	display: inline-block;
 }
 
 .safari .thx_punc_wrap + .thx_clps_spc {
