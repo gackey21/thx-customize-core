@@ -4,26 +4,6 @@ ruby {
 	text-align: center;
 }
 
-rt {
-	display: none;
-}
-
-.amp rt {
-	display: block;
-}
-
-.editor-rich-text rt {
-	display: block;
-}
-
-.gecko rt {
-	display: ruby-text;
-}
-
-.gecko .thx_yomi {
-	display: none;
-}
-
 .thx_yomi {
 	-webkit-user-select: none;
 	user-select: none;
@@ -48,9 +28,11 @@ rt {
 }
 
 .thx_yomi span {
-transform: scale(0.5, 0.5);
-transform-origin: top left;
-width: 0.5em;
+	-webkit-user-select: none;
+	user-select: none;
+	transform: scale(0.5);
+	transform-origin: top left;
+	width: 0.5em;
 }
 
 .thx_quo_spc {
