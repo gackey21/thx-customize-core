@@ -10,30 +10,8 @@ add_action( 'wp_enqueue_scripts', 'enqueue_kosugi_space' );
 
 //簡易的な日本語組版
 function thx_typesetting( $the_content ) {
-	//alt内の「>」を文字参照に
-	if ( preg_match_all( '{alt="[^\"]*>}uis', $the_content, $m_alt ) ) {
-		foreach ( $m_alt as $value ) {
-			// var_dump( '<pre>' . $value . '</pre>' );
-			$alt_amp     = preg_replace( '{(>)}is', '&gt;', $value );
-			$the_content = str_replace( $value, $alt_amp, $the_content );
-		}
-	}
-
-	//htmlをタグとテキストに分解・ペアリング
-	$tag_match = '{(<.*?>)}uis';
-	$pairing   = array_chunk(
-		preg_split(
-			$tag_match,
-			$the_content,
-			-1,
-			PREG_SPLIT_DELIM_CAPTURE
-		),
-		2
-	);
-
-	//ペア補充（notice対策）
-	$count                 = count( $pairing );
-	$pairing[ $count - 1 ] = array( ' ', ' ' );
+	//htmlをテキストとタグに分解
+	$pairing = Thx_Customize_Core::html_split_text_tag( $the_content );
 
 	//ペアリングをspanしながら結合
 	$the_content = '';

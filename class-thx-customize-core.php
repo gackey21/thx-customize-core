@@ -3,7 +3,7 @@
 Plugin Name: thx.jp/
 Plugin URI:
 Description: thx.jp/ カスタマイズの中核（Customize Core）プラグイン
-Version: 0.3.5
+Version: 0.3.6
 Author:Gackey.21
 Author URI: https://thx.jp
 License: GPL2
@@ -220,6 +220,35 @@ if ( ! class_exists( 'Thx_Customize_Core' ) ) {
 			}
 			return $classes;
 		}//browser_body_class( $classes )
+
+		//htmlをテキストとタグに分解
+		public static function html_split_text_tag( $html ) {
+			//alt内の「>」を文字参照に
+			if ( preg_match_all( '{alt="[^\"]*>}uis', $html, $match ) ) {
+				foreach ( $match as $value ) {
+					$alt_amp = preg_replace( '{(>)}is', '&gt;', $value );
+					$html    = str_replace( $value, $alt_amp, $html );
+				}
+			}
+
+			//htmlをテキストとタグに分解・ペアリング
+			$tag_match = '{(<.*?>)}uis';
+			$pairing   = array_chunk(
+				preg_split(
+					$tag_match,
+					$html,
+					-1,
+					PREG_SPLIT_DELIM_CAPTURE
+				),
+				2
+			);
+
+			//ペア補充（notice対策）
+			$count                 = count( $pairing );
+			$pairing[ $count - 1 ] = array( ' ', ' ' );
+
+			return $pairing;
+		}//html_split_text_tag( $html )
 	}//class
 }//! class_exists
 
