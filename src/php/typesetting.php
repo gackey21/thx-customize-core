@@ -10,9 +10,6 @@ add_action( 'wp_enqueue_scripts', 'enqueue_kosugi_space' );
 
 //簡易的な日本語組版
 function thx_typesetting( $the_content ) {
-	// ブラウザ判別用
-	global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
-
 	//alt内の「>」を文字参照に
 	if ( preg_match_all( '{alt="[^\"]*"}uis', $the_content, $m_alt ) ) {
 		foreach ( $m_alt as $value ) {
