@@ -1,16 +1,16 @@
 /* 和欧間スペース */
 .thx_wao {
-	font-feature-settings: "pwid";
+	/* font-feature-settings: "pwid"; */
 }
 
 :not(code)>.thx_wao::before {
-	font-family: arial narrow;
-	content: "\0020";
-	line-height: 0;
+	/* font-family: arial narrow; */
+	/* content: "\0020"; */
+	/* line-height: 0; */
 }
 
 :not(code)>.thx_wao::after {
-	font-family: arial narrow;
-	content: "\0020";
-	line-height: 0;
+	/* font-family: arial narrow; */
+	/* content: "\0020"; */
+	/* line-height: 0; */
 }
