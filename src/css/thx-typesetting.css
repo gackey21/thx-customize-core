@@ -53,7 +53,7 @@ code .thx_clps_spc {
 }
 
 /* 句読点 */
-.thx_clps_spc + .thx_punc_wrap {
+:not(code)>.thx_clps_spc + .thx_punc_wrap {
 	margin-left: -0.5em;
 }
 
@@ -80,9 +80,10 @@ code .thx_clps_spc {
 	line-height: 1em;
 }
 
-code .thx_punctuation {
+code .thx_punc_wrap .thx_punctuation {
 	position: relative;
 	font-feature-settings: "fwid";
+	bottom: initial;
 }
 
 .chrome .thx_punctuation {
@@ -116,7 +117,7 @@ code .thx_punctuation {
 	font-feature-settings: "halt";
 }
 
-.thx_opening_bracket + .thx_clps_spc + .thx_opening_bracket,
-.thx_closing_bracket + .thx_clps_spc + .thx_closing_bracket {
+:not(code)>.thx_opening_bracket + .thx_clps_spc + .thx_opening_bracket,
+:not(code)>.thx_closing_bracket + .thx_clps_spc + .thx_closing_bracket {
 	margin-left: -0.5em;
 }
