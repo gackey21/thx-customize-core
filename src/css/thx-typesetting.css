@@ -72,6 +72,10 @@ code .thx_clps_spc {
 	display: inline-block;
 }
 
+.thx_punc_punc {
+	font-feature-settings: "halt";
+}
+
 .chrome .thx_punc_wrap + .thx_clps_spc {
 	font-feature-settings: "fwid";
 }
