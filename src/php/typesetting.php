@@ -31,8 +31,18 @@ function thx_typesetting( $the_content ) {
 			$the_content
 			.= preg_replace_callback_array(
 				[
-					'@[ !-;=-~\p{Ll}\x{200b}]{2,}|[ !-;=-~\p{Ll}]+@uis' => function ( $match ) {
-						return '<span class = "thx_wao_spc"> </span><span class = "thx_pwid">' . $match[0] . '</span><span class = "thx_wao_spc"> </span>';
+					//欧文の検索（ゼロスペースを含む場合は２文字以上）
+					'@' .
+						'[ !-;=-~\p{Ll}\x{200b}]{2,}' .
+						'|' .
+						'[ !-;=-~\p{Ll}]+' .
+					'@uis' => function ( $match ) {
+						return
+							'<span class = "thx_wao_spc"> </span>' .
+							'<span class = "thx_pwid">' .
+								$match[0] .
+							'</span>' .
+							'<span class = "thx_wao_spc"> </span>';
 					},
 					'{[、。，．]}uis'      => function ( $match ) {
 						return '<span class = "thx_punc_wrap"><span class = "thx_punctuation">' . $match[0] . '</span></span><span class = "thx_clps_spc"> </span>';
