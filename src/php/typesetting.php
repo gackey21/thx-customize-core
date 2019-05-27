@@ -44,8 +44,17 @@ function thx_typesetting( $the_content ) {
 							'</span>' .
 							'<span class = "thx_wao_spc"> </span>';
 					},
-					'{[、。，．]}uis'      => function ( $match ) {
-						return '<span class = "thx_punc_wrap"><span class = "thx_punctuation">' . $match[0] . '</span></span><span class = "thx_clps_spc"> </span>';
+					//句読点の検索
+					'{' .
+						'[、。，．]' .
+					'}uis' => function ( $match ) {
+						return
+							'<span class = "thx_punc_wrap">' .
+								'<span class = "thx_punctuation">' .
+									$match[0] .
+								'</span>' .
+							'</span>' .
+							'<span class = "thx_clps_spc"> </span>';
 					},
 					'{[・：；]}uis'       => function ( $match ) {
 						return '<span class = "thx_clps_spc"> </span><span class = "thx_mid_dot">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
