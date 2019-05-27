@@ -29,48 +29,50 @@ function thx_typesetting( $the_content ) {
 			$the_content .= $str;
 		} else {
 			$the_content
-			.= preg_replace(
-				'{[^ !-~\p{Ll}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]+}uis',
-				'<span class = "thx_fwid">$0</span>',
-				preg_replace_callback_array(
-					[
-						'{[ !-;=-~\p{Ll}]+}uis' => function ( $match ) {
-							return '<span class = "thx_wao_spc"> </span><span class = "thx_pwid">' . $match[0] . '</span><span class = "thx_wao_spc"> </span>';
-						},
-						'{[、。，．]}uis'           => function ( $match ) {
-							return '<span class = "thx_punc_wrap"><span class = "thx_punctuation">' . $match[0] . '</span></span><span class = "thx_clps_spc"> </span>';
-						},
-						'{[・：；]}uis'            => function ( $match ) {
-							return '<span class = "thx_clps_spc"> </span><span class = "thx_mid_dot">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
-						},
-						'{[（｛［〔「『【〈《]}uis'      => function ( $match ) {
-							return '<span class = "thx_clps_spc"> </span><span class = "thx_opening_bracket">' . $match[0] . '</span>';
-						},
-						'{[）｝］〕」』】〉》]}uis'      => function ( $match ) {
-							return '<span class = "thx_closing_bracket">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
-						},
-						'{(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
-							return $match[1];
-						},
-						'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)}uis' => function ( $match ) {
-							return $match[2];
-						},
-						'{(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)(<span class = "thx_clps_spc"> </span>)(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)}uis' => function ( $match ) {
-							return $match[1] . $match[3];
-						},
-						'{(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)(<span class = "thx_clps_spc"> </span>)(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)}uis' => function ( $match ) {
-							return $match[1] . $match[3];
-						},
-						'{(<span class = "thx_clps_spc"> </span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
-							return $match[1];
-						},
-						'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_clps_spc"> </span>)}uis' => function ( $match ) {
-							return $match[2];
-						},
-					],
-					$str
-				)//preg_replace_callback_array()
-			);
+			.= preg_replace_callback_array(
+				[
+					'@[ !-;=-~\p{Ll}\x{200b}]{2,}|[ !-;=-~\p{Ll}]+@uis' => function ( $match ) {
+						return '<span class = "thx_wao_spc"> </span><span class = "thx_pwid">' . $match[0] . '</span><span class = "thx_wao_spc"> </span>';
+					},
+					'{[、。，．]}uis'      => function ( $match ) {
+						return '<span class = "thx_punc_wrap"><span class = "thx_punctuation">' . $match[0] . '</span></span><span class = "thx_clps_spc"> </span>';
+					},
+					'{[・：；]}uis'       => function ( $match ) {
+						return '<span class = "thx_clps_spc"> </span><span class = "thx_mid_dot">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
+					},
+					'{[（｛［〔「『【〈《]}uis' => function ( $match ) {
+						return '<span class = "thx_clps_spc"> </span><span class = "thx_opening_bracket">' . $match[0] . '</span>';
+					},
+					'{[）｝］〕」』】〉》]}uis' => function ( $match ) {
+						return '<span class = "thx_closing_bracket">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
+					},
+					'{(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
+						return $match[1];
+					},
+					'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)}uis' => function ( $match ) {
+						return $match[2];
+					},
+					'{(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)(<span class = "thx_clps_spc"> </span>)(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)}uis' => function ( $match ) {
+						return $match[1] . $match[3];
+					},
+					'{(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)(<span class = "thx_clps_spc"> </span>)(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)}uis' => function ( $match ) {
+						return $match[1] . $match[3];
+					},
+					'{(<span class = "thx_clps_spc"> </span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
+						return $match[1];
+					},
+					'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_clps_spc"> </span>)}uis' => function ( $match ) {
+						return $match[2];
+					},
+					'@[^ !-~\p{Ll}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]{2,}|[^ !-~\p{Ll}\x{200b}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]+@uis' => function ( $match ) {
+						return '<span class = "thx_fwid">' . $match[0] . '</span>';
+					},
+					'{[\x{200b}]+}uis' => function ( $match ) {
+						return '<span class = "thx_zero_spc">' . $match[0] . '</span>';
+					},
+				],
+				$str
+			);//$the_content .= preg_replace_callback_array()
 		}//else ( '</style>' === $tag )
 		$the_content .= $tag;
 	}//foreach ( $pairing as $value )

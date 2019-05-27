@@ -14,6 +14,12 @@ body {
 	font-feature-settings: "pwid";
 }
 
+/* ゼロ幅スペース（&#x200b;、\x{200b}） */
+.thx_zero_spc {
+	-webkit-user-select: none;
+	user-select: none;
+}
+
 /* 和欧間スペース */
 .thx_wao_spc {
 	font-family: Kosugi;
