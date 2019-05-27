@@ -75,8 +75,16 @@ function thx_typesetting( $the_content ) {
 					'}uis' => function ( $match ) {
 						return '<span class = "thx_punc_punc">' . $match[2] . $match[4] . '</span>';
 					},
-					'{[・：；]}uis'       => function ( $match ) {
-						return '<span class = "thx_clps_spc"> </span><span class = "thx_mid_dot">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
+					//中点の検索
+					'{' .
+						'[・：；]' .
+					'}uis' => function ( $match ) {
+						return
+							'<span class = "thx_clps_spc"> </span>' .
+							'<span class = "thx_mid_dot">' .
+								$match[0] .
+							'</span>' .
+							'<span class = "thx_clps_spc"> </span>';
 					},
 					'{[（｛［〔「『【〈《]}uis' => function ( $match ) {
 						return '<span class = "thx_clps_spc"> </span><span class = "thx_opening_bracket">' . $match[0] . '</span>';
