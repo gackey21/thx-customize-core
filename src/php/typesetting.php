@@ -56,15 +56,6 @@ function thx_typesetting( $the_content ) {
 							'</span>' .
 							'<span class = "thx_clps_spc"> </span>';
 					},
-					'{[・：；]}uis'       => function ( $match ) {
-						return '<span class = "thx_clps_spc"> </span><span class = "thx_mid_dot">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
-					},
-					'{[（｛［〔「『【〈《]}uis' => function ( $match ) {
-						return '<span class = "thx_clps_spc"> </span><span class = "thx_opening_bracket">' . $match[0] . '</span>';
-					},
-					'{[）｝］〕」』】〉》]}uis' => function ( $match ) {
-						return '<span class = "thx_closing_bracket">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
-					},
 					//連続する句読点はぶら下がり対象外
 					'{' .
 						'(<span class = "thx_punc_wrap"><span class = "thx_punctuation">)' .
@@ -83,6 +74,15 @@ function thx_typesetting( $the_content ) {
 						'(</span></span>)' .
 					'}uis' => function ( $match ) {
 						return '<span class = "thx_punc_punc">' . $match[2] . $match[4] . '</span>';
+					},
+					'{[・：；]}uis'       => function ( $match ) {
+						return '<span class = "thx_clps_spc"> </span><span class = "thx_mid_dot">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
+					},
+					'{[（｛［〔「『【〈《]}uis' => function ( $match ) {
+						return '<span class = "thx_clps_spc"> </span><span class = "thx_opening_bracket">' . $match[0] . '</span>';
+					},
+					'{[）｝］〕」』】〉》]}uis' => function ( $match ) {
+						return '<span class = "thx_closing_bracket">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
 					},
 					'{(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
 						return $match[1];
