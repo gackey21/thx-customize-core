@@ -48,6 +48,10 @@ code .thx_wao_spc {
 	line-height: 0;
 }
 
+body.amp .thx_clps_spc {
+	font-family: initial;
+}
+
 code .thx_clps_spc {
 	display: none;
 }
