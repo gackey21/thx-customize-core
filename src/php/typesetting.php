@@ -105,7 +105,7 @@ function thx_typesetting( $the_content ) {
 							'</span>' .
 							'<span class = "thx_clps_spc"> </span>';
 					},
-					//括弧内の和欧間スペースを除去
+					//括弧内の和欧間スペースを除去（禁則対策）
 					'{' .
 						'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
 						'(<span class = "thx_wao_spc"> </span>)' .
