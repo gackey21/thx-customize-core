@@ -154,7 +154,10 @@ function thx_typesetting( $the_content ) {
 					'@uis' => function ( $match ) {
 						return '<span class = "thx_fwid">' . $match[0] . '</span>';
 					},
-					'{[\x{200b}]+}uis' => function ( $match ) {
+					//ゼロスペース処理
+					'{' .
+						'[\x{200b}]+' .
+					'}uis' => function ( $match ) {
 						return '<span class = "thx_zero_spc">' . $match[0] . '</span>';
 					},
 				],
