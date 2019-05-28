@@ -133,10 +133,17 @@ function thx_typesetting( $the_content ) {
 					'}uis' => function ( $match ) {
 						return $match[1] . $match[3];
 					},
-					'{(<span class = "thx_clps_spc"> </span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
+					//相殺スペースは和欧間スペースを吸収
+					'{' .
+						'(<span class = "thx_clps_spc"> </span>)' .
+						'(<span class = "thx_wao_spc"> </span>)' .
+					'}uis' => function ( $match ) {
 						return $match[1];
 					},
-					'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_clps_spc"> </span>)}uis' => function ( $match ) {
+					'{' .
+						'(<span class = "thx_wao_spc"> </span>)' .
+						'(<span class = "thx_clps_spc"> </span>)' .
+					'}uis' => function ( $match ) {
 						return $match[2];
 					},
 					'@[^ !-~\p{Ll}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]{2,}|[^ !-~\p{Ll}\x{200b}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]+@uis' => function ( $match ) {
