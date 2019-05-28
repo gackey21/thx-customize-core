@@ -86,22 +86,51 @@ function thx_typesetting( $the_content ) {
 							'</span>' .
 							'<span class = "thx_clps_spc"> </span>';
 					},
-					'{[（｛［〔「『【〈《]}uis' => function ( $match ) {
-						return '<span class = "thx_clps_spc"> </span><span class = "thx_opening_bracket">' . $match[0] . '</span>';
+					//括弧の検索
+					'{' .
+						'[（｛［〔「『【〈《]' .
+					'}uis' => function ( $match ) {
+						return
+							'<span class = "thx_clps_spc"> </span>' .
+							'<span class = "thx_opening_bracket">' .
+								$match[0] .
+							'</span>';
 					},
-					'{[）｝］〕」』】〉》]}uis' => function ( $match ) {
-						return '<span class = "thx_closing_bracket">' . $match[0] . '</span><span class = "thx_clps_spc"> </span>';
+					'{' .
+						'[）｝］〕」』】〉》]' .
+					'}uis' => function ( $match ) {
+						return
+							'<span class = "thx_closing_bracket">' .
+								$match[0] .
+							'</span>' .
+							'<span class = "thx_clps_spc"> </span>';
 					},
-					'{(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
+					//括弧内の和欧間スペースを除去
+					'{' .
+						'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
+						'(<span class = "thx_wao_spc"> </span>)' .
+					'}uis' => function ( $match ) {
 						return $match[1];
 					},
-					'{(<span class = "thx_wao_spc"> </span>)(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)}uis' => function ( $match ) {
+					'{' .
+						'(<span class = "thx_wao_spc"> </span>)' .
+						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+					'}uis' => function ( $match ) {
 						return $match[2];
 					},
-					'{(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)(<span class = "thx_clps_spc"> </span>)(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)}uis' => function ( $match ) {
+					//連即する括弧のスペースを除去
+					'{' .
+						'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
+						'(<span class = "thx_clps_spc"> </span>)' .
+						'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
+					'}uis' => function ( $match ) {
 						return $match[1] . $match[3];
 					},
-					'{(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)(<span class = "thx_clps_spc"> </span>)(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)}uis' => function ( $match ) {
+					'{' .
+						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+						'(<span class = "thx_clps_spc"> </span>)' .
+						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+					'}uis' => function ( $match ) {
 						return $match[1] . $match[3];
 					},
 					'{(<span class = "thx_clps_spc"> </span>)(<span class = "thx_wao_spc"> </span>)}uis' => function ( $match ) {
