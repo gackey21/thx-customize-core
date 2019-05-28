@@ -198,7 +198,7 @@ function thx_typesetting( $the_content ) {
 		$the_content .= $tag;
 	}//foreach ( $pairing as $value )
 	return $the_content;
-}//wao_space($the_content)
+}//thx_typesetting( $the_content )
 
 //jsの出力
 // function wao_space_js() {
