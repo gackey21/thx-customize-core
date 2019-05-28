@@ -63,10 +63,6 @@ code .thx_clps_spc {
 }
 
 /* 句読点 */
-:not(code)>.thx_clps_spc + .thx_punc_wrap {
-	margin-left: -0.5em;
-}
-
 .thx_punc_wrap {
 	position: relative;
 	display: inline-block;
