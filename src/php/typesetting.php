@@ -146,7 +146,12 @@ function thx_typesetting( $the_content ) {
 					'}uis' => function ( $match ) {
 						return $match[2];
 					},
-					'@[^ !-~\p{Ll}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]{2,}|[^ !-~\p{Ll}\x{200b}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]+@uis' => function ( $match ) {
+					//欧文と役物以外を全角処理に
+					'@' .
+						'[^ !-~\p{Ll}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]{2,}' .
+						'|' .
+						'[^ !-~\p{Ll}\x{200b}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]+' .
+					'@uis' => function ( $match ) {
 						return '<span class = "thx_fwid">' . $match[0] . '</span>';
 					},
 					'{[\x{200b}]+}uis' => function ( $match ) {
