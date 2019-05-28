@@ -133,6 +133,37 @@ function thx_typesetting( $the_content ) {
 					'}uis' => function ( $match ) {
 						return $match[1] . $match[3];
 					},
+					//閉じ括弧と句読点
+					'{' .
+						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+						'(<span class = "thx_clps_spc"> </span>)' .
+						'(<span class = "thx_punc_wrap"><span class = "thx_punctuation">)' .
+						'([、。，．])' .
+						'(</span></span>)' .
+					'}uis' => function ( $match ) {
+						return $match[1] . $match[3] . $match[4] . $match[5];
+					},
+					'{' .
+						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+						'(<span class = "thx_clps_spc"> </span>)' .
+						'(<span class = "thx_punc_punc">)' .
+						'([、。，．]+)' .
+						'(</span>)' .
+					'}uis' => function ( $match ) {
+						return $match[1] . $match[3] . $match[4] . $match[5];
+					},
+					//句読点と閉じ括弧はぶら下がり対象外
+					'{' .
+						'(<span class = "thx_punc_wrap"><span class = "thx_punctuation">)' .
+						'([、。，．])' .
+						'(</span></span>)' .
+						'(<span class = "thx_clps_spc"> </span>)' .
+						'(<span class = "thx_closing_bracket">)' .
+						'([）｝］〕」』】〉》])' .
+						'(</span>)' .
+					'}uis' => function ( $match ) {
+						return '<span class = "thx_punc_clbr">' . $match[2] . $match[6] . '</span>';
+					},
 					//相殺スペースは和欧間スペースを吸収
 					'{' .
 						'(<span class = "thx_clps_spc"> </span>)' .
