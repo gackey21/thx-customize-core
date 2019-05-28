@@ -197,6 +197,29 @@ function thx_typesetting( $the_content ) {
 		}//else ( '</style>' === $tag )
 		$the_content .= $tag;
 	}//foreach ( $pairing as $value )
+
+	//括弧内の<a>などを禁則対策
+	$the_content
+		= preg_replace_callback_array(
+			[
+				'{' .
+					'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
+					'(<[^>]*>)' .
+					'(<span class = "thx_wao_spc"> </span>)' .
+				'}uis' => function ( $match ) {
+					return $match[1] . $match[2];
+				},
+				'{' .
+					'(<span class = "thx_wao_spc"> </span>)' .
+					'(<[^>]*>)' .
+					'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+				'}uis' => function ( $match ) {
+					return $match[2] . $match[3];
+				},
+			],
+			$the_content
+		);
+
 	return $the_content;
 }//thx_typesetting( $the_content )
 
