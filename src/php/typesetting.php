@@ -164,19 +164,6 @@ function thx_typesetting( $the_content ) {
 					'}uis' => function ( $match ) {
 						return '<span class = "thx_punc_clbr">' . $match[2] . $match[6] . '</span>';
 					},
-					//相殺スペースは和欧間スペースを吸収
-					'{' .
-						'(<span class = "thx_clps_spc"> </span>)' .
-						'(<span class = "thx_wao_spc"> </span>)' .
-					'}uis' => function ( $match ) {
-						return $match[1];
-					},
-					'{' .
-						'(<span class = "thx_wao_spc"> </span>)' .
-						'(<span class = "thx_clps_spc"> </span>)' .
-					'}uis' => function ( $match ) {
-						return $match[2];
-					},
 					//欧文と役物以外を全角処理に
 					'@' .
 						'[^ !-~\p{Ll}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]{2,}' .
@@ -197,6 +184,29 @@ function thx_typesetting( $the_content ) {
 		}//else ( '</style>' === $tag )
 		$the_content .= $tag;
 	}//foreach ( $pairing as $value )
+
+	//重複するthx_clps_spcを削除
+	$the_content
+		= str_replace(
+			'<span class = "thx_clps_spc"> </span><span class = "thx_clps_spc"> </span>',
+			'<span class = "thx_clps_spc"> </span>',
+			$the_content
+		);
+
+	//相殺スペースは和欧間スペースを吸収
+	$the_content
+		= str_replace(
+			'<span class = "thx_clps_spc"> </span><span class = "thx_wao_spc"> </span>',
+			'<span class = "thx_clps_spc"> </span>',
+			$the_content
+		);
+
+	$the_content
+		= str_replace(
+			'<span class = "thx_wao_spc"> </span><span class = "thx_clps_spc"> </span>',
+			'<span class = "thx_clps_spc"> </span>',
+			$the_content
+		);
 
 	//括弧内の<a>などを禁則対策
 	$the_content
