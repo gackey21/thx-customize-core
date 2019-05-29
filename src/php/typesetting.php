@@ -172,14 +172,10 @@ function thx_typesetting( $the_content ) {
 	//相殺スペースは和欧間スペースを吸収
 	$the_content
 		= str_replace(
-			'<span class = "thx_clps_spc"> </span><span class = "thx_wao_spc"> </span>',
-			'<span class = "thx_clps_spc"> </span>',
-			$the_content
-		);
-
-	$the_content
-		= str_replace(
-			'<span class = "thx_wao_spc"> </span><span class = "thx_clps_spc"> </span>',
+			array(
+				'<span class = "thx_clps_spc"> </span><span class = "thx_wao_spc"> </span>',
+				'<span class = "thx_wao_spc"> </span><span class = "thx_clps_spc"> </span>',
+			),
 			'<span class = "thx_clps_spc"> </span>',
 			$the_content
 		);
