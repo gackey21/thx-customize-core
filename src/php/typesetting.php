@@ -79,7 +79,7 @@ function thx_typesetting( $the_content ) {
 					},
 					//括弧の検索
 					'{' .
-						'[（｛［〔「『【〈《]' .
+						'[（｛［〔「『【〈《]+' .
 					'}uis' => function ( $match ) {
 						return
 							'<span class = "thx_clps_spc"> </span>' .
@@ -88,7 +88,7 @@ function thx_typesetting( $the_content ) {
 							'</span>';
 					},
 					'{' .
-						'[）｝］〕」』】〉》]' .
+						'[）｝］〕」』】〉》]+' .
 					'}uis' => function ( $match ) {
 						return
 							'<span class = "thx_closing_bracket">' .
@@ -98,35 +98,20 @@ function thx_typesetting( $the_content ) {
 					},
 					//括弧内の和欧間スペースを除去（禁則対策）
 					'{' .
-						'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
+						'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]+</span>)' .
 						'(<span class = "thx_wao_spc"> </span>)' .
 					'}uis' => function ( $match ) {
 						return $match[1];
 					},
 					'{' .
 						'(<span class = "thx_wao_spc"> </span>)' .
-						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]+</span>)' .
 					'}uis' => function ( $match ) {
 						return $match[2];
 					},
-					//連即する括弧のスペースを除去
-					'{' .
-						'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
-						'(<span class = "thx_clps_spc"> </span>)' .
-						'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
-					'}uis' => function ( $match ) {
-						return $match[1] . $match[3];
-					},
-					'{' .
-						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
-						'(<span class = "thx_clps_spc"> </span>)' .
-						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
-					'}uis' => function ( $match ) {
-						return $match[1] . $match[3];
-					},
 					//閉じ括弧と句読点
 					'{' .
-						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]+</span>)' .
 						'(<span class = "thx_clps_spc"> </span>)' .
 						'(<span class = "thx_punc_wrap"><span class = "thx_punctuation">)' .
 						'([、。，．])' .
@@ -135,7 +120,7 @@ function thx_typesetting( $the_content ) {
 						return $match[1] . $match[3] . $match[4] . $match[5];
 					},
 					'{' .
-						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+						'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]+</span>)' .
 						'(<span class = "thx_clps_spc"> </span>)' .
 						'(<span class = "thx_punc_punc">)' .
 						'([、。，．]+)' .
@@ -150,7 +135,7 @@ function thx_typesetting( $the_content ) {
 						'(</span></span>)' .
 						'(<span class = "thx_clps_spc"> </span>)' .
 						'(<span class = "thx_closing_bracket">)' .
-						'([）｝］〕」』】〉》])' .
+						'([）｝］〕」』】〉》]+)' .
 						'(</span>)' .
 					'}uis' => function ( $match ) {
 						return '<span class = "thx_punc_clbr">' . $match[2] . $match[6] . '</span>';
@@ -204,7 +189,7 @@ function thx_typesetting( $the_content ) {
 		= preg_replace_callback_array(
 			[
 				'{' .
-					'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]</span>)' .
+					'(<span class = "thx_opening_bracket">[（｛［〔「『【〈《]+</span>)' .
 					'(<[^>]*>)' .
 					'(<span class = "thx_wao_spc"> </span>)' .
 				'}uis' => function ( $match ) {
@@ -213,7 +198,7 @@ function thx_typesetting( $the_content ) {
 				'{' .
 					'(<span class = "thx_wao_spc"> </span>)' .
 					'(<[^>]*>)' .
-					'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]</span>)' .
+					'(<span class = "thx_closing_bracket">[）｝］〕」』】〉》]+</span>)' .
 				'}uis' => function ( $match ) {
 					return $match[2] . $match[3];
 				},
