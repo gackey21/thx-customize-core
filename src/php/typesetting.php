@@ -121,6 +121,17 @@ function thx_typesetting( $the_content ) {
 					'}uis' => function ( $match ) {
 						return '<span class = "thx_punc_clbr">' . $match[2] . $match[6] . '</span>';
 					},
+					'{' .
+						'(<span class = "thx_punc_punc">)' .
+						'([、。，．]+)' .
+						'(</span>)' .
+						'(<span class = "thx_clps_spc"> </span>)' .
+						'(<span class = "thx_closing_bracket">)' .
+						'([）｝］〕」』】〉》]+)' .
+						'(</span>)' .
+					'}uis' => function ( $match ) {
+						return '<span class = "thx_punc_clbr">' . $match[2] . $match[6] . '</span>';
+					},
 					//閉じ括弧と句読点
 					'{' .
 						'(<span class = "thx_(?:closing_bracket|punc_clbr)">[、。，．）｝］〕」』】〉》]+</span>)' .
