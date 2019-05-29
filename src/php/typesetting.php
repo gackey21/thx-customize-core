@@ -44,36 +44,27 @@ function thx_typesetting( $the_content ) {
 							'</span>' .
 							'<span class = "thx_wao_spc"> </span>';
 					},
-					//句読点の検索
-					'{' .
-						'[、。，．]' .
-					'}uis' => function ( $match ) {
-						return
-							'<span class = "thx_punc_wrap">' .
-								'<span class = "thx_punctuation">' .
-									$match[0] .
+					//句読点の検索（連続する句読点はぶら下がり対象外）
+					'@' .
+						'([、。，．]{2,})' .
+						'|' .
+						'([、。，．])' .
+					'@uis' => function ( $match ) {
+						if ( $match[1] ) {
+							return
+								'<span class = "thx_punc_punc">' .
+									$match[1] .
 								'</span>' .
-							'</span>' .
-							'<span class = "thx_clps_spc"> </span>';
-					},
-					//連続する句読点はぶら下がり対象外
-					'{' .
-						'(<span class = "thx_punc_wrap"><span class = "thx_punctuation">)' .
-						'([、。，．])' .
-						'(</span></span><span class = "thx_clps_spc"> </span><span class = "thx_punc_wrap"><span class = "thx_punctuation">)' .
-						'([、。，．])' .
-						'(</span></span>)' .
-					'}uis' => function ( $match ) {
-						return '<span class = "thx_punc_punc">' . $match[2] . $match[4] . '</span>';
-					},
-					'{' .
-						'(<span class = "thx_punc_punc">)' .
-						'([、。，．]+)' .
-						'(</span><span class = "thx_clps_spc"> </span><span class = "thx_punc_wrap"><span class = "thx_punctuation">)' .
-						'([、。，．])' .
-						'(</span></span>)' .
-					'}uis' => function ( $match ) {
-						return '<span class = "thx_punc_punc">' . $match[2] . $match[4] . '</span>';
+								'<span class = "thx_clps_spc"> </span>';
+						} else {
+							return
+								'<span class = "thx_punc_wrap">' .
+									'<span class = "thx_punctuation">' .
+										$match[2] .
+									'</span>' .
+								'</span>' .
+								'<span class = "thx_clps_spc"> </span>';
+						}
 					},
 					//中点の検索
 					'{' .
