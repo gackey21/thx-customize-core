@@ -125,8 +125,8 @@ code .thx_punc_wrap .thx_punctuation {
 	margin-left: -0.25em;
 }
 
-/* 括弧 */
-:not(code)>.thx_opening_bracket,
-:not(code)>.thx_closing_bracket {
+/* 括弧など */
+:not(code)>.thx_opening_mark,
+:not(code)>.thx_closing_mark {
 	font-feature-settings: "halt";
 }
