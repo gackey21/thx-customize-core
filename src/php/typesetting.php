@@ -68,7 +68,7 @@ function thx_typesetting( $the_content ) {
 					},
 					//中点の検索
 					'{' .
-						'[・：；]' .
+						'[・：；]+' .
 					'}uis' => function ( $match ) {
 						return
 							'<span class = "thx_clps_spc"> </span>' .
