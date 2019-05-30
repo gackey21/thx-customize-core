@@ -50,6 +50,8 @@ function thx_typesetting( $the_content ) {
 						'|' .
 						'([、。，．])' .
 					'@uis' => function ( $match ) {
+						'|' .
+						'([）｝］〕」』】〉》])' .
 						//句読点や閉じ括弧が２文字以上続いている場合
 						if ( $match[1] ) {
 							//終わりの２文字が同一ではなく、句読点で終わっていれば、ぶら下がり処理
@@ -83,7 +85,7 @@ function thx_typesetting( $the_content ) {
 									'</span>' .
 									'<span class = "thx_clps_spc"> </span>';
 							}
-						} else { //句読点が１文字のみは、ぶら下がり
+						} elseif ( $match[2] ) { //句読点が１文字のみは、ぶら下がり
 							return
 								'<span class = "thx_punc_wrap">' .
 									'<span class = "thx_punctuation">' .
@@ -91,6 +93,12 @@ function thx_typesetting( $the_content ) {
 									'</span>' .
 								'</span>' .
 								'<span class = "thx_clps_spc"> </span>';
+						} else { //ぶら下がり不要
+							return
+							'<span class = "thx_closing_mark">' .
+								$match[3] .
+							'</span>' .
+							'<span class = "thx_clps_spc"> </span>';
 						}
 					},
 					//中点の検索
