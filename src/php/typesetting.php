@@ -32,11 +32,11 @@ function thx_typesetting( $the_content ) {
 			.= preg_replace_callback_array(
 				[
 					//欧文の検索（ゼロスペースを含む場合は２文字以上）
-					'@' .
+					'#' .
 						'[ !-;=-~\p{Ll}\x{200b}]{2,}' .
 						'|' .
 						'[ !-;=-~\p{Ll}]+' .
-					'@uis' => function ( $match ) {
+					'#uis' => function ( $match ) {
 						return
 							'<span class = "thx_wao_spc"> </span>' .
 							'<span class = "thx_pwid">' .
@@ -45,13 +45,13 @@ function thx_typesetting( $the_content ) {
 							'<span class = "thx_wao_spc"> </span>';
 					},
 					//句読点と閉じ括弧の検索（後端単数の句読点のみ、ぶら下がり）
-					'@' .
+					'#' .
 						'([、。，．）｝］〕」』】〉》]{2,})' .
 						'|' .
 						'([、。，．])' .
-					'@uis' => function ( $match ) {
 						'|' .
 						'([）｝］〕」』】〉》])' .
+					'#uis' => function ( $match ) {
 						//句読点や閉じ括弧が２文字以上続いている場合
 						if ( $match[1] ) {
 							//終わりの２文字が同一ではなく、句読点で終わっていれば、ぶら下がり処理
@@ -102,9 +102,9 @@ function thx_typesetting( $the_content ) {
 						}
 					},
 					//中点の検索
-					'{' .
+					'#' .
 						'[・：；]+' .
-					'}uis' => function ( $match ) {
+					'#uis' => function ( $match ) {
 						return
 							'<span class = "thx_clps_spc"> </span>' .
 							'<span class = "thx_mid_dot">' .
@@ -113,9 +113,9 @@ function thx_typesetting( $the_content ) {
 							'<span class = "thx_clps_spc"> </span>';
 					},
 					//開き括弧の検索
-					'{' .
+					'#' .
 						'[（｛［〔「『【〈《]+' .
-					'}uis' => function ( $match ) {
+					'#uis' => function ( $match ) {
 						return
 							'<span class = "thx_clps_spc"> </span>' .
 							'<span class = "thx_opening_mark">' .
@@ -123,30 +123,30 @@ function thx_typesetting( $the_content ) {
 							'</span>';
 					},
 					//括弧内の和欧間スペースを除去（禁則対策）
-					'{' .
+					'#' .
 						'(<span class = "thx_opening_mark">[（｛［〔「『【〈《]+</span>)' .
 						'(<span class = "thx_wao_spc"> </span>)' .
-					'}uis' => function ( $match ) {
+					'#uis' => function ( $match ) {
 						return $match[1];
 					},
-					'{' .
+					'#' .
 						'(<span class = "thx_wao_spc"> </span>)' .
 						'(<span class = "thx_closing_mark">[、。，．）｝］〕」』】〉》]+</span>)' .
-					'}uis' => function ( $match ) {
+					'#uis' => function ( $match ) {
 						return $match[2];
 					},
 					//欧文と役物以外を全角処理に
-					'@' .
+					'#' .
 						'[^ !-~\p{Ll}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]{2,}' .
 						'|' .
 						'[^ !-~\p{Ll}\x{200b}、。，．・：；（｛［〔「『【〈《）｝］〕」』】〉》]+' .
-					'@uis' => function ( $match ) {
+					'#uis' => function ( $match ) {
 						return '<span class = "thx_fwid">' . $match[0] . '</span>';
 					},
 					//ゼロスペース処理
-					'{' .
+					'#' .
 						'[\x{200b}]+' .
-					'}uis' => function ( $match ) {
+					'#uis' => function ( $match ) {
 						return '<span class = "thx_zero_spc">' . $match[0] . '</span>';
 					},
 				],
@@ -179,18 +179,18 @@ function thx_typesetting( $the_content ) {
 	$the_content
 		= preg_replace_callback_array(
 			[
-				'{' .
+				'#' .
 					'(<span class = "thx_opening_mark">[（｛［〔「『【〈《]+</span>)' .
 					'(<[^>]*>)' .
 					'(<span class = "thx_wao_spc"> </span>)' .
-				'}uis' => function ( $match ) {
+				'#uis' => function ( $match ) {
 					return $match[1] . $match[2];
 				},
-				'{' .
+				'#' .
 					'(<span class = "thx_wao_spc"> </span>)' .
 					'(<[^>]*>)' .
 					'(<span class = "thx_closing_mark">[、。，．）｝］〕」』】〉》]+</span>)' .
-				'}uis' => function ( $match ) {
+				'#uis' => function ( $match ) {
 					return $match[2] . $match[3];
 				},
 			],
